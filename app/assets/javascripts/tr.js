@@ -4,7 +4,8 @@ window.TR = {
   Views: {},
   Routers: {},
   initialize: function() {
-    new TR.Routers.Router
+		TR.jobs = new TR.Collections.Jobs();
+    new TR.Routers.Router();
 		Backbone.history.start();
   }
 };

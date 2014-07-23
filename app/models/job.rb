@@ -1,5 +1,5 @@
 class Job < ActiveRecord::Base
-  validates :title, :source_lang, :target_lang, presence: true
+  validates :title, :source_lang_id, :target_lang_id, presence: true
   
   has_many :tasks
   

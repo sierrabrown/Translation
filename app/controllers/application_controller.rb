@@ -4,12 +4,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   # Expose these methods to the views
-  helper_method :current_user, :signed_in?
+  helper_method :current_user, :signed_in?, :is_customer?
 
   private
   def current_user
     return nil unless session[:token]
     @current_user ||= User.find_by_token(session[:token])
+  end
+  
+  
+  # FInish method
+  def is_customer?
+    return true
   end
 
   def signed_in?
