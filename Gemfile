@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'bootstrap-sass'
+gem 'backbone-on-rails'
 
 group :development do
   gem 'better_errors'
