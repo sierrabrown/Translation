@@ -1,10 +1,11 @@
 class User < ActiveRecord::Base
-  validates :username, :password, presence: true
-  validates :password, length: { minimum: 6 }
+  validates :username, :password_digest, presence: true
+  validates :password, length: { minimum: 6, allow_nil: true }
   attr_reader :password
   
   has_many :jobs
   has_many :tasks
+  
   def reset_token!
     self.token = SecureRandom.urlsafe_base64(16)
     self.save!
