@@ -22,12 +22,12 @@ module Api
     end
 
     def show
-      @job = Board.includes(:members, lists: :cards).find(params[:id])
+      @job = Job.find(params[:id])
 
-      if @job.is_member?(current_user)
+      if @job
         render :show
       else
-        render json: ["You aren't a member of this job"], status: 403
+        render json: ["This job doesn't exist"], status: 403
       end
     end
 

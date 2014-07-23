@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
   attr_reader :password
   
-  has_many :jobs
-  has_many :tasks
+  has_many :jobs, foreign_key: :customer_id, class_name: "Job"
+  has_many :tasks, foreign_key: :translator_id, class_name: "Task"
   
   def reset_token!
     self.token = SecureRandom.urlsafe_base64(16)

@@ -4,7 +4,8 @@ window.TR = {
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    new TR.Routers.Router
+		Backbone.history.start();
   }
 };
 
