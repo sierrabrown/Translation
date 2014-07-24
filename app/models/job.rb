@@ -78,9 +78,14 @@ class Job < ActiveRecord::Base
     source_texts = split_text(job.source_text)
     
     # Translate those texts in one mass call to google translate API
-    translated_texts = translateMultiple(source_texts, job.source_lang, job.target_lang)
+    machine_texts = translateMultiple(source_texts, job.source_lang, job.target_lang)
     # Add the machine translated version to the job object
-    job.machine_text = translated_texts.join("")
-    job.save!
+    job.machine_text = machine_texts.join("")
+    
+    (0...source_texts.length).each do |task_num|
+      job.tasks.new({source_text: source_texts[task_num], machine_text: machine_texts[task_num], source_lang: job.source_lang, target_lang: job.target_lang, completed: false})
+    end 
+    
+    job.save! 
   end
 end
