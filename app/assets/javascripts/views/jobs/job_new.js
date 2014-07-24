@@ -17,6 +17,8 @@ TR.Views.JobNew = Backbone.View.extend({
 				this.render()
 			}
 		})
+		var form = document.getElementById("translateForm")
+		form.reset();
 	},
 	
 	render: function() {
