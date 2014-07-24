@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140724181055) do
+ActiveRecord::Schema.define(version: 20140724211457) do
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
@@ -33,11 +33,11 @@ ActiveRecord::Schema.define(version: 20140724181055) do
     t.string   "title"
     t.string   "description"
     t.string   "source_text"
-    t.string   "macine_text"
+    t.string   "machine_text"
     t.string   "target_text"
     t.integer  "customer_id"
-    t.integer  "source_lang_id"
-    t.integer  "target_lang_id"
+    t.string   "source_lang"
+    t.string   "target_lang"
     t.boolean  "completed"
     t.integer  "price"
     t.datetime "created_at"

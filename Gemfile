@@ -30,6 +30,9 @@ gem 'bootstrap-sass'
 gem 'backbone-on-rails'
 gem 'delayed_job_active_record'
 gem 'daemons'
+gem 'debugger'
+gem 'addressable'
+gem 'rest_client'
 
 group :development do
   gem 'better_errors'
