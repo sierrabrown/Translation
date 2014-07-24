@@ -24,29 +24,13 @@
 	    </ul>
 		  <ul class="nav navbar-nav navbar-right">
 		       <li><a href="#">Order Translation</a></li>
-		       <li class="dropdown">
-		         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-		         <ul class="dropdown-menu">
-		           <li><a href="#">Action</a></li>
-		           <li><a href="#">Another action</a></li>
-		           <li><a href="#">Something else here</a></li>
-		           <li class="divider"></li>
-		           <li><a href="#">Separated link</a></li>
-		         </ul>
-		       </li>
+					 <li><%= link_to "Sign Out", session_url, :method => :delete %></li>
 		     </ul>
 	  </div>
 	</div>
 	
+	
 <%end%>	
-
-<% if signed_in? %>
-  <%= current_user.username %>
-  <%= button_to "Sign Out", session_url, :method => :delete %>
-<% else %>
-  <%= link_to "Sign In", new_session_url %>
-  <%= link_to "Sign Up", new_user_url %>
-<% end %>
 
 <%= yield %>
 

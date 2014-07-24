@@ -1,1 +1,27 @@
-Index
+<h4>Orders</h4>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Order Date</th>
+			<th>Status</th>
+			<th>Title</th>
+			<th>Cost</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<% jobs.each(function(job) { %>
+			<tr class="info">
+				<td>7/28/14</td>
+				<td>In Progress</td>
+				<td><%= job.escape('title')%></td>
+				<td><%= job.escape('cost')%></td>
+			</tr>
+		<% }); %>
+		
+	</tbody>
+	
+
+
+</table>

@@ -1,1 +1,51 @@
-New
+
+<form class="form-horizontal">
+  <fieldset>
+    <legend>What do you want to translate</legend>
+    <div class="form-group">
+      <label for="title" class="col-lg-2 control-label">Title</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="title" name="job[title]">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description" class="col-lg-2 control-label">Description</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="description" name="job[description]" placeholder="Any notes for the translator?">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="textArea" class="col-lg-2 control-label">Textarea</label>
+      <div class="col-lg-10">
+        <textarea class="form-control" rows="10" id="textArea" placeholder="Paste your text here. Don't worry about formatting, we'll take care of that."></textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="select" class="col-lg-2 control-label">Language Pair</label>
+      <div class="col-lg-3">
+				<label>Source Language:</label>
+        <select class="form-control" id="select">
+          <option>English</option>
+          <option>Spanish</option>
+          <option>French</option>
+        </select>
+        <br>
+				<label>Target Language:</label>
+        <select class="form-control" id="select">
+          <option>English</option>
+          <option>Spanish</option>
+          <option>French</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+
+
+</form>

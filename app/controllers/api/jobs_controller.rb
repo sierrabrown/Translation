@@ -18,6 +18,7 @@ module Api
 
     def index
       @jobs = current_user.jobs
+      p @jobs
       render json: @jobs
     end
 
@@ -34,7 +35,8 @@ module Api
     private
 
     def job_params
-      params.require(:job).permit(:title)
+      params.require(:job).permit(:title, :description, :source_text, :machine_text, :target_text, :customer_id, :source_lang_id, :target_lang_id,
+      :completed, :price)
     end
   end
 end

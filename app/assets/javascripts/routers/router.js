@@ -7,7 +7,6 @@ TR.Routers.Router = Backbone.Router.extend({
 	
 	indexJob: function() {
 		TR.jobs.fetch();
-		debugger;
 		var view = new TR.Views.JobsIndex({
 			collection: TR.jobs
 		})
