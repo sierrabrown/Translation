@@ -4,4 +4,8 @@ class Job < ActiveRecord::Base
   has_many :tasks
   
   belongs_to :customer, foreign_key: :customer_id, class_name: "User"
+  
+  def print
+    p "delayed jobs worked"
+  end
 end

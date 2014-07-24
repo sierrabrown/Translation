@@ -4,6 +4,7 @@ module Api
       @job = current_user.jobs.new(job_params)
 
       if @job.save
+        @job.delay.print
         render json: @job
       else
         render json: @job.errors.full_messages, status: :unprocessable_entity
@@ -31,6 +32,7 @@ module Api
         render json: ["This job doesn't exist"], status: 403
       end
     end
+
 
     private
 
