@@ -72,6 +72,7 @@ class Job < ActiveRecord::Base
     target_texts_arr
   end
   
+  # The bulk of backend work moving the job from the customer to translators.
   def self.build_and_translate(id)
     job = Job.find(id)
     # Split job text into small tasks for translators
@@ -82,7 +83,8 @@ class Job < ActiveRecord::Base
     # Add the machine translated version to the job object
     job.machine_text = machine_texts.join("")
     
-    (0...source_texts.length).each do |task_num|
+    # Create tasks.
+    (0...source_texts.length).each do |task_num|job.save!
       job.tasks.new({source_text: source_texts[task_num], machine_text: machine_texts[task_num], source_lang: job.source_lang, target_lang: job.target_lang, completed: false})
     end 
     

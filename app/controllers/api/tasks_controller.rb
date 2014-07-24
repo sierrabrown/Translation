@@ -15,7 +15,7 @@ module Api
       @task = Task.find(params[:id])
 
       if @task
-        render :show
+        render json: @task
       else
         render json: ["This job doesn't exist"], status: 403
       end
