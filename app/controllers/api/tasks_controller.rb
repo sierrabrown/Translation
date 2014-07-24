@@ -7,7 +7,7 @@ module Api
     end
 
     def index
-      @tasks = Task.all
+      @tasks = Task.all.where({source_lang: params['source_lang'], target_lang: params['target_lang']})
       render json: @tasks
     end
 
@@ -17,7 +17,7 @@ module Api
       if @task
         render json: @task
       else
-        render json: ["This job doesn't exist"], status: 403
+        render json: ["This task doesn't exist"], status: 403
       end
     end
 
