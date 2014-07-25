@@ -1,6 +1,7 @@
 require 'addressable/uri'
 
 class Job < ActiveRecord::Base
+  include HTTParty
   validates :title, :source_lang, :target_lang, presence: true
   
   has_many :tasks
@@ -45,31 +46,14 @@ class Job < ActiveRecord::Base
     query
   end
   
-  def self.translateMultiple(task_source_texts, source_lang, target_lang) 
-  
-    translate_url = Addressable::URI.new(
-    :scheme => 'https',
-    :host => 'www.googleapis.com',
-    :path => '/language/translate/v2',
-    :query_values => {
-      :key => 'AIzaSyBjBkoiAjrm1_rN_r_C-uxPrah8GJfvVkc',
-      :target => target_lang,
-      :source => source_lang,
-      }
-    ).to_s
+  def self.translateMultiple(task_source_texts, source, target)
+    ToLang.start('AIzaSyBjBkoiAjrm1_rN_r_C-uxPrah8GJfvVkc')
+    array = []
     
-    translate_url += build_query_string(task_source_texts)
-    p translate_url
-    
-    translation = JSON.parse(RestClient.get(translate_url))
-  
-    target_texts_hash = translation["data"]["translations"]
-  
-    target_texts_arr = []
-    target_texts_hash.each do |text|
-      target_texts_arr << text["translatedText"]
+    task_source_texts.each do |text|
+      array << text.translate(target, :from => source)
     end
-    target_texts_arr
+    return array
   end
   
   # The bulk of backend work moving the job from the customer to translators.
