@@ -7,7 +7,13 @@ module Api
     end
 
     def index
-      @tasks = Task.all.where({source_lang: params['source_lang'], target_lang: params['target_lang']})
+      @tasks = Task.all
+      if (params['source_lang'] && params['target_lang'])
+        @tasks = @tasks.where(source_lang: params['source_lang'], target_lang: params['target_lang'])
+      end
+      if (params['completed'])
+        @tasks = @tasks.where(completed: params['completed'])
+      end
       render json: @tasks
     end
 
@@ -38,3 +44,9 @@ module Api
     end
   end
 end
+
+# class CatsController
+#   def index
+#     @cats = Cat.all
+#     @cats = @cats.where(coat_color: params[:coat_color]) if params[:coat_color]
+#     @cats = @cats.where(cuddly: params[:cuddly]) if params[:cuddly]

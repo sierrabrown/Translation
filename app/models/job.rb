@@ -74,10 +74,4 @@ class Job < ActiveRecord::Base
     job.save! 
   end
   
-  def finished
-    self.tasks.each do |task|
-      return false if task.completed == false
-    end
-    true
-  end
 end

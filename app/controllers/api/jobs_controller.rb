@@ -34,6 +34,17 @@ module Api
         render json: ["This job doesn't exist"], status: 403
       end
     end
+    
+    def update
+      @job = Job.find(params[:id])
+      if @job.update_attributes(job_params)
+        render json: @job
+      else
+        render json: ["major problems"], status: 403
+      end
+    end
+
+    
 
 
     private
