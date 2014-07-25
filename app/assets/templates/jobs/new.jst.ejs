@@ -1,3 +1,15 @@
+<script>
+
+
+$("#textArea").keyup(function(event) {
+	var len = $(this).val().length;
+	var cost = (len * .0035).toFixed(2)
+	$("#cost").html((len + ' total characters' + '$' + cost))
+})
+</script>
+
+
+
 
 <form class="form-horizontal" id="translateForm">
   <fieldset>
@@ -17,7 +29,7 @@
     <div class="form-group">
       <label for="textArea" class="col-lg-2 control-label">Textarea</label>
       <div class="col-lg-10">
-        <textarea class="form-control" rows="10" id="textArea" name="job[source_text]" placeholder="Paste your text here. Don't worry about formatting, we'll take care of that."></textarea>
+        <textarea class="source_text form-control" rows="10" id="textArea" name="job[source_text]" placeholder="Paste your text here. Don't worry about formatting, we'll take care of that."></textarea>
       </div>
     </div>
     <div class="form-group">

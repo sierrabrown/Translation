@@ -8,14 +8,9 @@ TR.Views.TranslateHome = Backbone.View.extend({
 		return this;
 	},
 	
-	renderWorkspace: function() {
-		var content = this.workspace();
-		this.$el.html(content)
-		return this;
-	},
-	
+
 	events: {
-		"submit form": "submit",
+		"submit #translate-form": "submit",
 	},
 	
 	submit: function(event){
@@ -24,7 +19,7 @@ TR.Views.TranslateHome = Backbone.View.extend({
 		var params = params["choice"]
 		var that = this;
 		TR.tasks.fetch({ 
-			data: {source_lang: params["from"], target_lang: params["to"]},
+			data: {source_lang: params["from"], target_lang: params["to"], completed: false},
 			success: function() { that.edit() }
 		})
 	},

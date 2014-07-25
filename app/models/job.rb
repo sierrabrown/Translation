@@ -71,7 +71,13 @@ class Job < ActiveRecord::Base
     (0...source_texts.length).each do |task_num|job.save!
       job.tasks.new({source_text: source_texts[task_num], machine_text: machine_texts[task_num], source_lang: job.source_lang, target_lang: job.target_lang, completed: false})
     end 
-    
     job.save! 
+  end
+  
+  def finished
+    self.tasks.each do |task|
+      return false if task.completed == false
+    end
+    true
   end
 end

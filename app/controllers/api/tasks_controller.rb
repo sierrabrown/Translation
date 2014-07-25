@@ -20,6 +20,15 @@ module Api
         render json: ["This task doesn't exist"], status: 403
       end
     end
+    
+    def update
+      @task = Task.find(params[:id])
+      if @task.update_attributes(task_params)
+        render json: @task
+      else
+        render json: ["major problems"], status: 403
+      end
+    end
 
 
     private
