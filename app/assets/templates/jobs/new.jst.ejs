@@ -11,9 +11,9 @@ $("#textArea").keyup(function(event) {
 
 
 
-<form class="form-horizontal" id="translateForm">
+<form class="form-horizontal box" id="translateForm">
   <fieldset>
-    <legend>What do you want to translate</legend>
+    <legend>Make an Order</legend>
     <div class="form-group">
       <label for="title" class="col-lg-2 control-label">Title</label>
       <div class="col-lg-10">
@@ -21,13 +21,7 @@ $("#textArea").keyup(function(event) {
       </div>
     </div>
     <div class="form-group">
-      <label for="description" class="col-lg-2 control-label">Description</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" id="description" name="job[description]" placeholder="Any notes for the translator?">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="textArea" class="col-lg-2 control-label">Textarea</label>
+      <label for="textArea" class="col-lg-2 control-label">Paste</label>
       <div class="col-lg-10">
         <textarea class="source_text form-control" rows="10" id="textArea" name="job[source_text]" placeholder="Paste your text here. Don't worry about formatting, we'll take care of that."></textarea>
       </div>
@@ -52,7 +46,7 @@ $("#textArea").keyup(function(event) {
     </div>
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-default">Submit</button>
       </div>
     </div>
   </fieldset>

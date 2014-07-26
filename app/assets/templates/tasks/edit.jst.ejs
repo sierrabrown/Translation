@@ -1,30 +1,25 @@
-<h2>Translate!</h2>
 
-<br />
-
-<div class="container" height="50%">
-		<div class="jumbotron col-xs-5" height="50%">
-			<h4><%= task.escape('source_lang')%></h4>
-			<br>
-				<%= task.escape('source_text')%>
-		</div>
-		<div class="col-xs-1"></div>
-    <div class="jumbotron col-xs-5" height="50%">
-			<h4><%= task.escape('target_lang')%></h4>
-			<br>
-				<form id="edit">
-			    <div class="form-group">
-						<label for='target_text'>Translate:</label>
-			      <textarea 
-							class="form-control" 
-							rows="10" 
-							id="target_text" 
-							name="task[target_text]" 
-							value="<%= task.escape('machine_text')%>"
-							><%= task.escape('machine_text')%></textarea>
-							<button class="btn btn-primary">Submit</button>
-			    </div>
-					<button class="btn btn-primary">Skip</button>
-				</form>
-		</div>
+<div class="jumbotron col-xs-5" height="50%">
+<h4><%= task.escape('source_lang')%></h4>
+<%= task.escape('source_text')%>
 </div>
+
+<div class=col-xs-2></div>
+
+<div class="jumbotron col-xs-5" height="50%">
+	<h4><%= task.escape('target_lang')%></h4>
+	<form id="edit">
+	  <div class="form-group">
+	  <textarea 
+			class="form-control" 
+			rows="10" 
+			id="target_text" 
+			name="task[target_text]" 
+			value="<%= task.escape('machine_text')%>"
+			><%= task.escape('machine_text')%></textarea>
+			<button class="btn btn-default">Submit</button>
+	  </div>
+		<button class="btn btn-default">Skip</button>
+	</form>
+</div>
+

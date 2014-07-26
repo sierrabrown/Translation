@@ -3,6 +3,7 @@ TR.Routers.Router = Backbone.Router.extend({
 		"": "static_pages#root",
 		"jobs/index": "indexJob",
 		"jobs/new": "newJob",
+		"home": "home",
 		"translate": "translate"
   },
 	
@@ -22,6 +23,11 @@ TR.Routers.Router = Backbone.Router.extend({
 	
 	translate: function() {
 		var view = new TR.Views.TranslateHome()
+		this._swapView(view)
+	},
+	
+	home: function() {
+		var view = new TR.Views.Home()
 		this._swapView(view)
 	},
 

@@ -1,37 +1,35 @@
-<form class="form-horizontal" id='translate-form' >
-	<fieldset>
-		
-		<div class="form-group">
+<form class="form-horizontal box" id='translate-form'>
+<fieldset>
+	
+	<div class="form-group">
 
-			<label for="choice_from" class="col-lg-2 control-label">From:</label>
-				
-			<div class="col-lg-10">
-				<select class="form-control" id="choice_from" name="choice[from]">
-					<option value='en'>English</option>
-					<option value='es'>Spanish</option>
-					<option value='fr'>French</option>
-				</select>
-			</div>
-
-
-
-			<label for="choice_to" class="col-lg-2 control-label">To:</label>
-			<div class="col-lg-10">
-				<select class="form-control" id="choice_to" name="choice[to]">
-					<option value='en'>English</option>
-					<option value='es'>Spanish</option>
-					<option value='fr'>French</option>
-				</select>
-			</div>
+		<label for="choice_from" class="col-xs-1 control-label">From:</label>
 			
+		<div class="col-xs-3">
+			<select class="form-control" id="choice_from" name="choice[from]">
+				<option value='en'>English</option>
+				<option value='es'>Spanish</option>
+				<option value='fr'>French</option>
+			</select>
 		</div>
 
-		<div class="col-lg-10 col-lg-offset-2">
-			<button class="btn btn-success">Submit</button>
-		</div>
+		
 
-	</fieldset>
+		<label for="choice_to" class="col-xs-1 control-label">To:</label>
+		<div class="col-xs-3">
+			<select class="form-control" id="choice_to" name="choice[to]">
+				<option value='en'>English</option>
+				<option value='es'>Spanish</option>
+				<option value='fr'>French</option>
+			</select>
+		</div>
+		
+		<div class="col-xs-3 col-xs-offset-1">
+			<button class="btn btn-default">Submit</button>
+		</div>
+	</div>
+</fieldset>
 </form>
 
 
-<div id = "workspace"></div>
+<div id="workspace"></div>
