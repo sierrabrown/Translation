@@ -33,6 +33,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
+    aws-sdk (1.49.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     backbone-on-rails (1.1.1.0)
       actionmailer
       actionpack
@@ -53,6 +56,10 @@ GEM
     bootstrap-sass (3.2.0.0)
       sass (~> 3.2)
     builder (3.2.2)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.4)
+      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -83,6 +90,9 @@ GEM
     ejs (1.1.1)
     erubis (2.7.0)
     execjs (2.2.1)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     hike (1.2.3)
     httparty (0.13.1)
       json (~> 1.8)
@@ -99,10 +109,18 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_portile (0.6.0)
     minitest (5.4.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     netrc (0.7.7)
+    nokogiri (1.6.3.1)
+      mini_portile (= 0.6.0)
+    paperclip (4.2.0)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.17.1)
     polyglot (0.3.5)
     rack (1.5.2)
@@ -170,6 +188,7 @@ PLATFORMS
 
 DEPENDENCIES
   addressable
+  aws-sdk
   backbone-on-rails
   bcrypt-ruby
   better_errors
@@ -179,9 +198,11 @@ DEPENDENCIES
   daemons
   debugger
   delayed_job_active_record
+  figaro
   httparty
   jbuilder (~> 2.0)
   jquery-rails
+  paperclip
   pg
   rails (= 4.1.1)
   rest_client

@@ -11,8 +11,8 @@ module Api
       if (params['source_lang'] && params['target_lang'])
         @tasks = @tasks.where(source_lang: params['source_lang'], target_lang: params['target_lang'])
       end
-      if (params['completed'])
-        @tasks = @tasks.where(completed: params['completed'])
+      if (params['status'])
+        @tasks = @tasks.where(status: params['status'])
       end
       render json: @tasks
     end
@@ -29,18 +29,26 @@ module Api
     
     def update
       @task = Task.find(params[:id])
+      debugger
       if @task.update_attributes(task_params)
+        @job = Job.find(@task.job_id)
+        job_completed = @job.tasks.none? { |task| task.status == 'in progress' }
+        if job_completed
+          @job.write_to_file
+          @job.status = 'completed'
+          @job.save!
+        end
         render json: @task
       else
         render json: ["major problems"], status: 403
       end
     end
-
+    
 
     private
 
     def task_params
-      params.require(:task).permit(:job_id, :source_text, :machine_text, :target_text, :translator_id, :source_lang, :target_lang, :completed, :price)
+      params.require(:task).permit(:job_id, :source_text, :machine_text, :target_text, :translator_id, :source_lang, :target_lang, :status, :price)
     end
   end
 end

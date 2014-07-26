@@ -11,7 +11,19 @@ class Job < ActiveRecord::Base
   def print
     p "delayed jobs worked"
   end
-
+  
+  def write_to_file
+    # Tempfile.open(["translation#{self.id}", '.txt'], Rails.root.join('tmp')) do |file|
+    #
+    #   begin
+    #     file << self.target_text
+    #     self.download = file
+    #   ensure
+    #     file.close
+    #     file.unlink
+    #   end
+    # end
+  end
   
   def self.split_text(original)
     task_source_texts = []
@@ -47,7 +59,7 @@ class Job < ActiveRecord::Base
   end
   
   def self.translateMultiple(task_source_texts, source, target)
-    ToLang.start('AIzaSyBjBkoiAjrm1_rN_r_C-uxPrah8GJfvVkc')
+    ToLang.start(GOOGLE_TRANSLATE_KEY)
     array = []
     
     task_source_texts.each do |text|
@@ -69,7 +81,7 @@ class Job < ActiveRecord::Base
     
     # Create tasks.
     (0...source_texts.length).each do |task_num|job.save!
-      job.tasks.new({source_text: source_texts[task_num], machine_text: machine_texts[task_num], source_lang: job.source_lang, target_lang: job.target_lang, completed: false})
+      job.tasks.new({source_text: source_texts[task_num], machine_text: machine_texts[task_num], source_lang: job.source_lang, target_lang: job.target_lang, status: 'in progress'})
     end 
     job.save! 
   end

@@ -36,6 +36,11 @@ gem 'rest_client'
 gem 'httparty'
 gem 'to_lang'
 
+
+gem 'figaro'
+gem 'paperclip'
+gem "aws-sdk"
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

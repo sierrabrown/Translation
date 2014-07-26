@@ -4,7 +4,6 @@ module Api
     def create
       @job = current_user.jobs.new(job_params)
       if @job.save
-        p @job
         #@job.delay.print
         Job.build_and_translate(@job.id)
         render json: @job
@@ -50,7 +49,7 @@ module Api
 
     def job_params
       params.require(:job).permit(:title, :description, :source_text, :machine_text, :target_text, :customer_id, :source_lang, :target_lang,
-      :completed, :price)
+      :status, :price)
     end
   end
 end

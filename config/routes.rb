@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :jobs, except: [:new, :edit]
     resources :tasks, except: [:new]
+    resources :users, only: [:show]
   end
 end

@@ -11,13 +11,12 @@ TR.Views.TaskEdit = Backbone.View.extend({
 		var that = this
 		var params = $(event.target).serializeJSON()
 		var params = params["task"]
-		this.model.set({target_text: params["target_text"], completed: true})
-		
+		this.model.set({target_text: params["target_text"], status: 'completed'})
+	
 		this.model.save({}, {
 			success: function() {
-				that.updateParent(that.model.id);
 				TR.tasks.fetch({
-					data: {source_lang: that.model.source_lang, target_lang: that.model.target_lang, completed: false},
+					data: {source_lang: that.model.source_lang, target_lang: that.model.target_lang, status: 'in progress'},
 					success: function() { 
 						if (TR.tasks.length == 0) {
 							alert('You finished all the tasks available for this language pair.')
@@ -28,27 +27,6 @@ TR.Views.TaskEdit = Backbone.View.extend({
 				})
 			}
 		})
-	},
-	
-	// Done server side?
-	updateParent: function(id) {
-		var parent_id = this.model.get('job_id')
-		var parentJob = TR.jobs.getOrFetch(parent_id)
-		if (this.completion(parent_id)) {
-		   parentJob.completed = true
-			 parentJob.save()
-		}
-	},
-
-	completion: function(id) {
-		var tests = TR.tasks
-		var tests = tests.where({job_id: id})
-		tests.forEach( function(task) {
-			if (task.completed == false) {
-				return false
-			}
-		})
-		return true;
 	},
 	
 	
