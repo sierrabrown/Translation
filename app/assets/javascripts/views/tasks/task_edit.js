@@ -17,8 +17,14 @@ TR.Views.TaskEdit = Backbone.View.extend({
 			success: function() {
 				that.updateParent(that.model.id);
 				TR.tasks.fetch({
-					data: {source_lang: 'en', target_lang: 'es', completed: false},
-					success: function() { console.log(TR.tasks); that.render() }
+					data: {source_lang: that.model.source_lang, target_lang: that.model.target_lang, completed: false},
+					success: function() { 
+						if (TR.tasks.length == 0) {
+							alert('You finished all the tasks available for this language pair.')
+						} else {
+						that.render()
+						} 
+					}
 				})
 			}
 		})

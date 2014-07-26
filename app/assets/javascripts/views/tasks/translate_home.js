@@ -20,7 +20,13 @@ TR.Views.TranslateHome = Backbone.View.extend({
 		var that = this;
 		TR.tasks.fetch({ 
 			data: {source_lang: params["from"], target_lang: params["to"], completed: false},
-			success: function() { that.edit() }
+			success: function() { 
+				if (TR.tasks.length == 0) {
+					alert('You finished all the tasks available for this language pair.')
+				} else {
+					that.edit() 
+				}
+			}
 		})
 	},
 	

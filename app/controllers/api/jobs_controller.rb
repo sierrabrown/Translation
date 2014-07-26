@@ -3,7 +3,6 @@ module Api
   class JobsController < ApiController
     def create
       @job = current_user.jobs.new(job_params)
-      p job_params
       if @job.save
         p @job
         #@job.delay.print
