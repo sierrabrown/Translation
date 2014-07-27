@@ -15,7 +15,7 @@
 				<td>7/28/14</td>
 				<td><%= job.escape('status')%></td>
 				<td><%= job.escape('title')%></td>
-				<td><%= job.escape('price')%></td>
+				<td><%= job.escape('price') / 100.0).toFixed(2)%></td>
 			</tr>
 		<% }); %>
 		

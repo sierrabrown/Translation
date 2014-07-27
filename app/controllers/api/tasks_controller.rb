@@ -3,6 +3,7 @@ module Api
   class TasksController < ApiController
     def create
       @task = Task.new(task_params)
+      @task.price = (@task.source_text.length * 0.001).round(2)
       @task.save
     end
 
@@ -29,7 +30,6 @@ module Api
     
     def update
       @task = Task.find(params[:id])
-      debugger
       if @task.update_attributes(task_params)
         @job = Job.find(@task.job_id)
         job_completed = @job.tasks.none? { |task| task.status == 'in progress' }

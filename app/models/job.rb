@@ -1,6 +1,9 @@
 require 'addressable/uri'
 
 class Job < ActiveRecord::Base
+  
+  has_attached_file :translated_file
+  do_not_validate_attachment_file_type :translated_file
   include HTTParty
   validates :title, :source_lang, :target_lang, presence: true
   
@@ -13,16 +16,24 @@ class Job < ActiveRecord::Base
   end
   
   def write_to_file
+    target_text = ""
+    self.tasks.each do |task|
+      target_text = target_text + task.target_text
+    end
+    self.target_text = target_text
+    
+    
+    
     # Tempfile.open(["translation#{self.id}", '.txt'], Rails.root.join('tmp')) do |file|
-    #
-    #   begin
-    #     file << self.target_text
-    #     self.download = file
-    #   ensure
-    #     file.close
-    #     file.unlink
-    #   end
-    # end
+#       begin
+#         file << self.target_text
+#         debugger
+#         self.translated_file = file
+#       ensure
+#         file.close
+#         file.unlink
+#       end
+#     end
   end
   
   def self.split_text(original)
@@ -81,9 +92,17 @@ class Job < ActiveRecord::Base
     
     # Create tasks.
     (0...source_texts.length).each do |task_num|job.save!
-      job.tasks.new({source_text: source_texts[task_num], machine_text: machine_texts[task_num], source_lang: job.source_lang, target_lang: job.target_lang, status: 'in progress'})
+      job.tasks.new({source_text: source_texts[task_num], 
+                    machine_text: machine_texts[task_num], 
+                    source_lang: job.source_lang, 
+                    target_lang: job.target_lang, 
+                    status: 'in progress',
+                    price: (source_texts[task_num].length * 0.001).round(3) * 100
+                  })
     end 
     job.save! 
   end
+  
+    
   
 end

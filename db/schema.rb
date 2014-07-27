@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140726223042) do
+ActiveRecord::Schema.define(version: 20140726232724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,10 +41,14 @@ ActiveRecord::Schema.define(version: 20140726223042) do
     t.integer  "customer_id"
     t.string   "source_lang"
     t.string   "target_lang"
-    t.string   "status",       default: "in progress"
+    t.string   "status",                       default: "in progress"
     t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "translated_file_file_name"
+    t.string   "translated_file_content_type"
+    t.integer  "translated_file_file_size"
+    t.datetime "translated_file_updated_at"
   end
 
   create_table "tasks", force: true do |t|
