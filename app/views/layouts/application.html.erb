@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<%= stylesheet_link_tag 'application' %>
-	<%= javascript_include_tag 'application' %>
+	<%= javascript_include_tag 'https://js.stripe.com/v1/', 'application' %>
 <%= csrf_meta_tags %>
+<%= tag :meta, name: 'stripe-key', content: ENV['stripe_live_publishable_key']%>
 <head>
   <title>Translation App</title>
 </head>
