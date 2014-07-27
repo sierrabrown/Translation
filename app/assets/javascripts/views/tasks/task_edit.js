@@ -11,7 +11,6 @@ TR.Views.TaskEdit = Backbone.View.extend({
 		var that = this
 		var params = $(event.target).serializeJSON()
 		var params = params["task"]
-		debugger
 		this.model.set({target_text: params["target_text"], status: 'completed', translator_id: TR.currentUser.id})
 	
 		this.model.save({}, {

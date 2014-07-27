@@ -9,6 +9,8 @@ module Api
       if @job.save
         #@job.delay.print
         Job.build_and_translate(@job.id)
+        current_user.funds -= @job.price
+        current_user.save!
         render json: @job
       else
         render json: @job.errors.full_messages, status: :unprocessable_entity

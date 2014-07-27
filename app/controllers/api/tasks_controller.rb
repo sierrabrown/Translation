@@ -32,13 +32,16 @@ module Api
       @task = Task.find(params[:id])
       if @task.update_attributes(task_params)
         @job = Job.find(@task.job_id)
+        current_user.wordCount = current_user.wordCount + 5 
+        current_user.funds || current_user.funds = 0
+        current_user.funds += @task.price
+        current_user.save!
         job_completed = @job.tasks.none? { |task| task.status == 'in progress' }
         if job_completed
           @job.write_to_file
           @job.status = 'completed'
           @job.save!
         end
-        debugger
         render json: @task
       else
         render json: ["major problems"], status: 403
