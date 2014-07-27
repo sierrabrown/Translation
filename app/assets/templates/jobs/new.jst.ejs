@@ -1,19 +1,8 @@
-<script>
-
-
-$("#textArea").keyup(function(event) {
-	var len = $(this).val().length;
-	var cost = (len * 0.0022).toFixed(2)
-	$("#cost").html('<h5>Total Cost: $' + cost + '</h5>')
-})
-</script>
-
-
-
-
 <form class="form-horizontal box" id="translateForm">
   <fieldset>
     <legend>Make an Order</legend>
+		
+		<input type="hidden" name="job[price]" value="" id="job[price]">
 
     <div class="form-group">
       <label for="title" class="col-lg-2 control-label">Title</label>

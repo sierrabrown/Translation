@@ -3,7 +3,6 @@ module Api
   class JobsController < ApiController
     def create
       @job = current_user.jobs.new(job_params)
-      @job.price = (@job.source_text.length * 0.002).round(2) * 100
       #Check to make sure the user has enough money in their account.
       #subtract the price of the job from the users account.
       if @job.save
