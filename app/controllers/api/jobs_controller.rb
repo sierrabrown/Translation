@@ -8,6 +8,7 @@ module Api
       if @job.save
         #@job.delay.print
         Job.build_and_translate(@job.id)
+        current_user.funds || current_user.funds = 0
         current_user.funds -= @job.price
         current_user.save!
         render json: @job

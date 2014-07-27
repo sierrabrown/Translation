@@ -35,6 +35,7 @@ gem 'addressable'
 gem 'rest_client'
 gem 'httparty'
 gem 'to_lang'
+gem 'stripe'
 
 
 gem 'figaro'

@@ -1,42 +1,46 @@
-        <div class="row">
-            <div class="box">
-                <div class="col-sm-4 text-center">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                    <h3><%= currentUser.escape('username') %></h3>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                    <h3>Machine Translation</h3>
-                </div>
-                <div class="col-sm-4 text-center">
-                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-                    <h3>Human Editing</h3>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>        
+<div class="row">
+  <div class="box">
+   <h2><%= currentUser.escape('username') %>'s Profile</h2>
+	 <h4><%= currentUser.escape('wordCount') %> words translated</h4>
+ 	</div>
+</div>        
 
-<table class="table table-striped box" id="order">
-	<thead>
-		<tr>
-			<th>Order Date</th>
-			<th>Status</th>
-			<th>Title</th>
-			<th>Cost</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% jobs.each( function(job) { %>
-		<tr class="info">
-			<td>7/28/14</td>
-			<td><%= job.escape('status')%></td>
-			<td><%= job.escape('title')%></td>
-			<td><%= (job.escape('price') / 100.0).toFixed(2)%></td>
-		</tr>
-		<% }) %>
+<div class="row">
+  <div class="box">
+   <h2>Bank Account</h2>
+	 <h4>$<%= currentUser.escape('funds') %></h4>
+ 	</div>
+</div>        
 
+<div class="row">
+  <div class="box">
+   <h2>Get more credit</h2>
+	 <h4>Stripe API</h4>
+ 	</div>
+</div>        
 
-	</tbody>
-
-
-</table>
+<div class="row">
+  <div class="box">
+   <h2>My Orders and Downloads</h2>
+	 <table class="table table-striped box" id="order">
+	 	<thead>
+	 		<tr>
+	 			<th>Order Date</th>
+	 			<th>Status</th>
+	 			<th>Title</th>
+	 			<th>Cost</th>
+	 		</tr>
+	 	</thead>
+	 	<tbody>
+	 		<% jobs.each( function(job) { %>
+	 		<tr class="info">
+	 			<td>7/28/14</td>
+	 			<td><%= job.escape('status')%></td>
+	 			<td><%= job.escape('title')%></td>
+	 			<td><%= (job.escape('price') / 100.0).toFixed(2)%></td>
+	 		</tr>
+	 		<% }) %>
+	 	</tbody>
+	 </table>
+ 	</div>
+</div>        
