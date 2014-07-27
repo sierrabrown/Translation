@@ -3,10 +3,11 @@ TR.Views.JobsIndex = Backbone.View.extend({
 	
 	initialize: function() {
 		this.listenTo(this.collection, 'sync', this.render)
+		this.listenTo(this.model, 'sync', this.render)
 	},
 	
 	render: function() {
-		var content = this.template( {jobs: this.collection} );
+		var content = this.template( {jobs: this.collection, tasks: this.collection2, currentUser: this.model} );
 		this.$el.html(content);
 		return this;
 	}

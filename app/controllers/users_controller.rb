@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     render json: @user
   end
   
-  def current_user
+  def currentuser
     @user = current_user
     render json: @user
   end

@@ -38,6 +38,7 @@ module Api
           @job.status = 'completed'
           @job.save!
         end
+        debugger
         render json: @task
       else
         render json: ["major problems"], status: 403
