@@ -16,6 +16,12 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    # get rid of password digest
+    render json: @user
+  end
+  
+  def current_user
+    @user = current_user
     render json: @user
   end
 

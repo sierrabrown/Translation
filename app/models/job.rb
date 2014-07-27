@@ -23,17 +23,17 @@ class Job < ActiveRecord::Base
     self.target_text = target_text
     
     
-    
+        #
     # Tempfile.open(["translation#{self.id}", '.txt'], Rails.root.join('tmp')) do |file|
-#       begin
-#         file << self.target_text
-#         debugger
-#         self.translated_file = file
-#       ensure
-#         file.close
-#         file.unlink
-#       end
-#     end
+    #   begin
+    #     file << self.target_text
+    #     debugger
+    #     self.translated_file = file
+    #   ensure
+    #     file.close
+    #     file.unlink
+    #   end
+    # end
   end
   
   def self.split_text(original)

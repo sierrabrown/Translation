@@ -1,4 +1,3 @@
-
 <table class="table table-striped box" id="order">
 	<thead>
 		<tr>
@@ -8,17 +7,18 @@
 			<th>Cost</th>
 		</tr>
 	</thead>
-	
 	<tbody>
-		<% jobs.each(function(job) { %>
-			<tr class="info">
-				<td>7/28/14</td>
-				<td><%= job.escape('status')%></td>
-				<td><%= job.escape('title')%></td>
-				<td><%= job.escape('price') / 100.0).toFixed(2)%></td>
-			</tr>
-		<% }); %>
-		
+		<% jobs.each( function(job) { %>
+		<tr class="info">
+			<td>7/28/14</td>
+			<td><%= job.escape('status')%></td>
+			<td><%= job.escape('title')%></td>
+			<td><%= (job.escape('price') / 100.0).toFixed(2)%></td>
+		</tr>
+		<% }) %>
+
+
 	</tbody>
-	
+
+
 </table>

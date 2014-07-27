@@ -22,7 +22,8 @@ module Api
     end
 
     def index
-      @jobs = current_user.jobs
+      # Add in current user
+      @jobs = Job.all
       render json: @jobs
     end
 

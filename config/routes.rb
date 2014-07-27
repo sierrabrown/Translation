@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :users
   resource :session
   
+  get '/current_user', to: 'users#current_user'
+  
   namespace :api, defaults: { format: :json } do
     resources :jobs, except: [:new, :edit]
     resources :tasks, except: [:new]
