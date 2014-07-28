@@ -25,7 +25,7 @@ module Api
 
     def index
       # Add in current user
-      @jobs = Job.all
+      @jobs = current_user.jobs
       render json: @jobs
     end
 
@@ -35,7 +35,7 @@ module Api
         format.html
         format.pdf do
           pdf = JobPdf.new(@job)
-          send_data pdf.render, 
+          send_data pdf.render(@job), 
           filename: "job#{@job.id}.pdf",
           type: "application/pdf",
           disposition: "inline"

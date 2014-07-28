@@ -214,6 +214,7 @@ DEPENDENCIES
   httparty
   jbuilder (~> 2.0)
   jquery-rails
+  mail
   paperclip
   pg
   prawn
