@@ -62,6 +62,7 @@
 	 			<th>Status</th>
 	 			<th>Title</th>
 	 			<th>Cost</th>
+				<th>Download</th>
 	 		</tr>
 	 	</thead>
 	 	<tbody>
@@ -71,6 +72,9 @@
 	 			<td><%= job.escape('status')%></td>
 	 			<td><%= job.escape('title')%></td>
 	 			<td><%= (job.escape('price') / 100.0).toFixed(2)%></td>
+				<% if (job.escape('status') == 'completed') {%>
+				<td><a href="/api/jobs/125.pdf">Download</a></td>
+				<% }; %>
 	 		</tr>
 	 		<% }) %>
 	 	</tbody>

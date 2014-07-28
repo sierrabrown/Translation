@@ -4,11 +4,16 @@ TR.Routers.Router = Backbone.Router.extend({
 		"jobs/index": "indexJob",
 		"jobs/new": "newJob",
 		"jobs/:id": "showJob",
+		"jobs/:id/download": "downloadJob",
 		"home": "home",
 		"profile": "profile",
 		"translate": "translate",
 		"charge": "charge"
   },
+	
+	downloadJob: function(id) {
+		debugger
+	},
 	
 	showJob: function(id) {
 		TR.jobs.fetch()

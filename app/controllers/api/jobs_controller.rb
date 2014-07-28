@@ -1,4 +1,4 @@
-
+require "prawn"
 module Api
   class JobsController < ApiController
     def create
@@ -31,13 +31,40 @@ module Api
 
     def show
       @job = Job.find(params[:id])
-
-      if @job
-        render json: @job
-      else
-        render json: ["This job doesn't exist"], status: 403
+      respond_to do |format|
+        format.html
+        format.pdf do
+          pdf = JobPdf.new(@job)
+          send_data pdf.render, 
+          filename: "job#{@job.id}.pdf",
+          type: "application/pdf"
+        end
       end
     end
+
+      #
+      # Prawn::Document.generate("hello.pdf") do
+      #   text "Hello World!"
+      # end
+      # pdf = Prawn::Document.new
+#       pdf.text "Hello World"
+#       pdf.render_file "assignment.pdf"
+#
+#       # Implicit Block
+#       Prawn::Document.generate("implicit.pdf") do
+#         text "Hello World"
+#       end
+#
+#       # Explicit Block
+#       Prawn::Document.generate("explicit.pdf") do |pdf|
+#         pdf.text "Hello World"
+#       end
+    #   if @job
+    #     render json: @job
+    #   else
+    #     render json: ["This job doesn't exist"], status: 403
+    #   end
+    # end
     
     def update
       @job = Job.find(params[:id])
@@ -46,6 +73,10 @@ module Api
       else
         render json: ["major problems"], status: 403
       end
+    end
+    
+    def download
+      fail
     end
 
     
