@@ -7,9 +7,7 @@ Rails.application.routes.draw do
   get '/current_user', to: 'users#currentuser'
   
   namespace :api, defaults: { format: :json } do
-    resources :jobs, except: [:new, :edit] do
-      post 'download', to: 'jobs#download'
-    end
+    resources :jobs, except: [:new, :edit]
     resources :tasks, except: [:new]
     resources :users do
       collection do

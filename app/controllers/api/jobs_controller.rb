@@ -37,34 +37,12 @@ module Api
           pdf = JobPdf.new(@job)
           send_data pdf.render, 
           filename: "job#{@job.id}.pdf",
-          type: "application/pdf"
+          type: "application/pdf",
+          disposition: "inline"
         end
       end
     end
-
-      #
-      # Prawn::Document.generate("hello.pdf") do
-      #   text "Hello World!"
-      # end
-      # pdf = Prawn::Document.new
-#       pdf.text "Hello World"
-#       pdf.render_file "assignment.pdf"
-#
-#       # Implicit Block
-#       Prawn::Document.generate("implicit.pdf") do
-#         text "Hello World"
-#       end
-#
-#       # Explicit Block
-#       Prawn::Document.generate("explicit.pdf") do |pdf|
-#         pdf.text "Hello World"
-#       end
-    #   if @job
-    #     render json: @job
-    #   else
-    #     render json: ["This job doesn't exist"], status: 403
-    #   end
-    # end
+  
     
     def update
       @job = Job.find(params[:id])
@@ -75,13 +53,6 @@ module Api
       end
     end
     
-    def download
-      fail
-    end
-
-    
-
-
     private
 
     def job_params

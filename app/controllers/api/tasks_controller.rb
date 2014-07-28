@@ -39,8 +39,7 @@ module Api
         job_completed = @job.tasks.none? { |task| task.status == 'in progress' }
         if job_completed
           @job.write_to_file
-          @job.status = 'completed'
-          @job.save!
+          @job.update_attributes(status: "completed")
         end
         render json: @task
       else
