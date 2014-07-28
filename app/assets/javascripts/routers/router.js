@@ -3,10 +3,19 @@ TR.Routers.Router = Backbone.Router.extend({
 		"": "static_pages#root",
 		"jobs/index": "indexJob",
 		"jobs/new": "newJob",
+		"jobs/:id": "showJob",
 		"home": "home",
 		"profile": "profile",
-		"translate": "translate"
+		"translate": "translate",
+		"charge": "charge"
   },
+	
+	showJob: function(id) {
+		TR.jobs.fetch()
+		var job = TR.jobs.getOrFetch(id)
+		var view = new TR.Views.JobShow({model: job})
+		this._swapView(view)
+	},
 	
 	profile: function() {
 		TR.jobs.fetch()
@@ -58,6 +67,10 @@ TR.Routers.Router = Backbone.Router.extend({
     this.currentView && this.currentView.remove();
     this.currentView = view;
     $('#main').html(view.render().$el);
-  }
+  },
+	
+	charge: function(params) {
+		debugger
+	}
 	
 });

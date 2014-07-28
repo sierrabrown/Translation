@@ -16,28 +16,42 @@ TR.Views.JobsIndex = Backbone.View.extend({
 		return this;
 	},
 	
+	stripeResponseHandler: function(status, response) {
+	  var $form = $('#payment-form');
+	  if (response.error) {
+	    // Show the errors on the form
+	    $form.find('.payment-errors').text(response.error.message);
+	    $form.find('button').prop('disabled', false);
+	  } else {
+	    // response contains id and card, which contains additional card details
+	    var token = response.id;
+	    // Insert the token into the form so it gets submitted to the server
+	    $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+	    // and submit
+			formData = $form.serializeJSON()
+	    $.ajax({
+	    	data: formData,
+				url: "/api/users/charge",
+				method: "POST",
+				dataType: "JSON",
+				success: this.notifyUser
+	    })
+	  }
+	},
+	
+	notifyUser: function() {
+		alert("you bought more credit")
+		this.render()
+	},
+	
 	submit: function(event){
 		event.preventDefault();
 		event.stopPropagation();
-		var that = this
-		var params = $(event.target).serializeJSON()
-		var params = params["user"]
-		// Parde int and then move on
-		this.model.set({target_text: params["target_text"], status: 'completed', translator_id: TR.currentUser.id})
-	
-		this.model.save({}, {
-			success: function() {
-				TR.tasks.fetch({
-					data: {source_lang: that.model.source_lang, target_lang: that.model.target_lang, status: 'in progress'},
-					success: function() { 
-						if (TR.tasks.length == 0) {
-							alert('You finished all the tasks available for this language pair.')
-						} else {
-						that.render()
-						} 
-					}
-				})
-			}
-		})
-	},
+		
+	  var $form = $(event.currentTarget);
+	     // Disable the submit button to prevent repeated clicks
+	  $form.find('button').prop('disabled', true);
+		Stripe.setPublishableKey('pk_test_4Twzx8W4JDyBDVQROR7RDHKn')
+	  Stripe.card.createToken($form, this.stripeResponseHandler);
+	}
 })

@@ -32,7 +32,7 @@ module Api
       @task = Task.find(params[:id])
       if @task.update_attributes(task_params)
         @job = Job.find(@task.job_id)
-        current_user.wordCount = current_user.wordCount + 5 
+        current_user.wordCount = current_user.wordCount + (@task.source_text.length / 5)
         current_user.funds || current_user.funds = 0
         current_user.funds += @task.price
         current_user.save!

@@ -8,7 +8,7 @@
 <div class="row">
   <div class="box">
    <h2>Bank Account</h2>
-	 <h4>$<%= currentUser.escape('funds') %></h4>
+	 <h4>$<%= (currentUser.escape('funds')/100).toFixed(2)%></h4>
  	</div>
 </div>        
 
@@ -16,15 +16,39 @@
   <div class="box">
    <h2>Get more credit</h2>
 	 <h4>Stripe API</h4>
- 	<form id="buyCredit">
- 	  <div class="form-group">
-    <select class="form-control" name ="user[funds]" id="select">
-      <option value='5'>$5</option>
-      <option value='10'>$10</option>
-      <option value='25'>$25</option>
-    </select>
- 		<button class="btn btn-default">Buy</button>
- 	</form>
+	<form action="charge" method="POST" id="payment-form">
+	  <span class="payment-errors"></span>
+
+	  <div class="form-row">
+			<label>
+				<span>Credit Amount</span>
+				<input type="text" size="20" data-stripe="number" name="charge[amount]"/>
+	    </label>
+		</div>
+		<div class="form-row">
+	      <span>Card Number</span>
+	      <input type="text" size="20" data-stripe="number" name="charge[number]"/>
+	    </label>
+	  </div>
+
+	  <div class="form-row">
+	    <label>
+	      <span>CVC</span>
+	      <input type="text" size="4" data-stripe="cvc" name="charge[cvc]"/>
+	    </label>
+	  </div>
+
+	  <div class="form-row">
+	    <label>
+	      <span>Expiration (MM/YYYY)</span>
+	      <input type="text" size="2" data-stripe="exp-month" name="charge[exp-month]"/>
+	    </label>
+	    <span> / </span>
+	    <input type="text" size="4" data-stripe="exp-year" name="charge[year]"/>
+	  </div>
+
+	  <button type="submit">Submit Payment</button>
+	</form>
  	</div>
 </div>        
 

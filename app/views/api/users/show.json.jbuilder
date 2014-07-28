@@ -1,1 +1,1 @@
-json.(user, :username)
+user.(user, :username, :funds)

@@ -36,7 +36,7 @@ gem 'rest_client'
 gem 'httparty'
 gem 'to_lang'
 gem 'stripe'
-
+gem 'prawn'
 
 gem 'figaro'
 gem 'paperclip'

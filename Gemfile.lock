@@ -121,8 +121,12 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    pdf-core (0.2.5)
     pg (0.17.1)
     polyglot (0.3.5)
+    prawn (1.2.1)
+      pdf-core (~> 0.2.5)
+      ttfunk (~> 1.2.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -182,6 +186,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    ttfunk (1.2.0)
     turbolinks (2.2.2)
       coffee-rails
     tzinfo (1.2.1)
@@ -211,6 +216,7 @@ DEPENDENCIES
   jquery-rails
   paperclip
   pg
+  prawn
   rails (= 4.1.1)
   rest_client
   sass-rails (~> 4.0.3)

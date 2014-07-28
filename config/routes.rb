@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :jobs, except: [:new, :edit]
     resources :tasks, except: [:new]
-    resources :users, only: [:show]
+    resources :users, only: [:show] do
+      collection do
+        post 'charge', to: 'users#charge'
+      end
+    end
   end
 end

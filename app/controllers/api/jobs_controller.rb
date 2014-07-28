@@ -33,7 +33,7 @@ module Api
       @job = Job.find(params[:id])
 
       if @job
-        render :show
+        render json: @job
       else
         render json: ["This job doesn't exist"], status: 403
       end

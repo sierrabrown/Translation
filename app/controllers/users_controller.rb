@@ -14,6 +14,13 @@ class UsersController < ApplicationController
     end
   end
   
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      render json: @user
+    end
+  end
+  
   def show
     @user = User.find(params[:id])
     # get rid of password digest
@@ -27,7 +34,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:password, :token, :username)
+    params.require(:user).permit(:password, :token, :username, :funds)
   end
   
 end
