@@ -53,5 +53,5 @@ TR.Views.JobsIndex = Backbone.View.extend({
 	  $form.find('button').prop('disabled', true);
 		Stripe.setPublishableKey('pk_test_4Twzx8W4JDyBDVQROR7RDHKn')
 	  Stripe.card.createToken($form, this.stripeResponseHandler);
-	}
+	},
 })

@@ -8,7 +8,8 @@ TR.Routers.Router = Backbone.Router.extend({
 		"home": "home",
 		"profile": "profile",
 		"translate": "translate",
-		"charge": "charge"
+		"charge": "charge",
+		"contact": "contact"
   },
 	
 	downloadJob: function(id) {
@@ -75,6 +76,10 @@ TR.Routers.Router = Backbone.Router.extend({
   },
 	
 	charge: function(params) {
+		debugger
+	},
+	
+	contact: function() {
 		debugger
 	}
 	
