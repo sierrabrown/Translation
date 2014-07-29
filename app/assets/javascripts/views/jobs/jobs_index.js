@@ -47,11 +47,15 @@ TR.Views.JobsIndex = Backbone.View.extend({
 	submit: function(event){
 		event.preventDefault();
 		event.stopPropagation();
-		
-	  var $form = $(event.currentTarget);
-	     // Disable the submit button to prevent repeated clicks
-	  $form.find('button').prop('disabled', true);
-		Stripe.setPublishableKey('pk_test_4Twzx8W4JDyBDVQROR7RDHKn')
-	  Stripe.card.createToken($form, this.stripeResponseHandler);
+		cost = $(event.currentTarget).serializeJSON()
+		TR.currentUser.set({funds: parseInt(TR.currentUser.escape('funds')) + parseInt(cost["amount"]) * 100 })
+		this.notifyUser()
+		//Disabled Stripe for the purpose of demos.
+				//
+		// 	  var $form = $(event.currentTarget);
+		// 	     // Disable the submit button to prevent repeated clicks
+		// 	  $form.find('button').prop('disabled', true);
+		// Stripe.setPublishableKey('pk_test_4Twzx8W4JDyBDVQROR7RDHKn')
+		// 	  Stripe.card.createToken($form, this.stripeResponseHandler);
 	},
 })

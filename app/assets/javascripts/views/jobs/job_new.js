@@ -1,5 +1,6 @@
 TR.Views.JobNew = Backbone.View.extend({
 	template: JST['jobs/new'],
+	modal: JST['jobs/modal'],
 	
 	events: {
 		"submit form": "submit",
@@ -37,6 +38,9 @@ TR.Views.JobNew = Backbone.View.extend({
 	render: function() {
 		var content = this.template();
 		this.$el.html(content);
+		var modal = this.modal()
+		debugger
+		this.$el.find('#modalSpace').html(modal);
 		return this;
 	}
 })

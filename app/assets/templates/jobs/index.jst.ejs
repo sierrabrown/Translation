@@ -14,7 +14,6 @@ $(document).ready(function() {
 });
 
 </script>
-
 <div class="row">
   <div class="box">
 		<link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">  
@@ -160,52 +159,59 @@ $(document).ready(function() {
 </div>
 
 <a name="bank"></a>
-<div class="row">
-  <div class="box">
-   <h2>Bank Account</h2>
-	 <h4>$<%= (currentUser.escape('funds')/100).toFixed(2)%></h4>
- 	</div>
-</div>        
 
 <div class="row">
   <div class="box">
-   <h2>Get more credit</h2>
-	 <h4>Stripe API</h4>
-	<form action="charge" method="POST" id="payment-form">
-	  <span class="payment-errors"></span>
-
-	  <div class="form-row">
-			<label>
-				<span>Credit Amount</span>
-				<input type="text" size="20" data-stripe="number" name="charge[amount]"/>
-	    </label>
+		<link href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css" rel="stylesheet" media="screen">  
+		<div class="container">
+		    <div class="row user-menu-container square">
+		        <div class="col-md-8 user-details">
+		            <div class="row coralbg white">
+		                <div class="col-md-12 no-pad">
+		                    <div class="user-pad">
+		                        <h3 style="color:#{00EEEE}">Bank Account</h3>
+														<br>
+		                        <h4 class="white"><i class="fa fa-check-circle-o"></i>  Get funds by translating or purchasing</h4>
+														<br>
+		                        <h4 class="white"><i class="fa fa-check-circle-o"></i>  Withdraw funds you earned translating</h4>
+														<br>
+		                        <h4 class="white"><i class="fa fa-check-circle-o"></i>  We are in BETA!</h4>
+														
+														<br>
+		                        <h4 class="white"><i class="fa fa-check-circle-o"></i>  Try us out with play money to right.</h4>
+														
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="col-md-4 user-menu user-pad">
+		                   <h3>Current Balance</h3>
+		                   <h4>$<%= (currentUser.escape('funds')/100).toFixed(2)%></h4>
+										 <h4>Add credit:<span class="green-text">Positive numbers</span></h4>
+										 <h4>Cash out:<span class="red-text">Negative numbers</span></h4>
+										<form action="charge" method="POST" id="payment-form">
+										  <span class="payment-errors"></span>
+											<br>
+										  <div class="form-row">
+												<label>
+													<span>How much?</span>
+										      <select class="form-control" name ="amount" id="select">
+										        <option value='5'>5</option>
+										        <option value='10'>10</option>
+										        <option value='-5'>-5</option>
+														<option value='-10'>-10</option>
+										      </select>
+										    </label>
+												<button type="submit" class="btn btn-labeled btn-info">
+												<span class="btn-label"><i class="fa fa-pencil"></i></span>SUBMIT</button>
+										</form>
+		            </div>
+		        </div>
+		    </div>
 		</div>
-		<div class="form-row">
-	      <span>Card Number</span>
-	      <input type="text" size="20" data-stripe="number" name="charge[number]"/>
-	    </label>
-	  </div>
+	 </div>      
+</div>
 
-	  <div class="form-row">
-	    <label>
-	      <span>CVC</span>
-	      <input type="text" size="4" data-stripe="cvc" name="charge[cvc]"/>
-	    </label>
-	  </div>
-
-	  <div class="form-row">
-	    <label>
-	      <span>Expiration (MM/YYYY)</span>
-	      <input type="text" size="2" data-stripe="exp-month" name="charge[exp-month]"/>
-	    </label>
-	    <span> / </span>
-	    <input type="text" size="4" data-stripe="exp-year" name="charge[year]"/>
-	  </div>
-
-	  <button type="submit">Submit Payment</button>
-	</form>
- 	</div>
-</div>        
 <a name="orders"></a>
 <div class="row">
   <div class="box">
@@ -214,7 +220,6 @@ $(document).ready(function() {
 	 	<thead>
 	 		<tr>
 	 			<th>Order Date</th>
-	 			<th>Status</th>
 	 			<th>Title</th>
 	 			<th>Cost</th>
 				<th>Download</th>
@@ -223,15 +228,16 @@ $(document).ready(function() {
 	 	<tbody>
 	 		<% jobs.each( function(job) { %>
 	 		<tr>
-	 			<td><i class="fa fa-clock-o"></i> 7/28/14</td>
-	 			<td><%= job.escape('status')%></td>
+				<% var date = new Date(job.escape('created_at'))%>
+				<% var betterDate = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear() %>
+	 			<td><i class="fa fa-clock-o"></i><%= betterDate %></td>
 	 			<td><%= job.escape('title')%></td>
 	 			<td><%= (job.escape('price') / 100.0).toFixed(2)%></td>
 				<% if (job.escape('status') == 'completed') {%>
 					<% string =  "/api/jobs/" + jobs.at(i).escape('id') + ".pdf"%>
 					<td><a href=<%=string%>><small class="coral" ><strong>DOWNLOAD</strong></small></a>
 				<% } else {%>
-					<td>Still working on it</td>
+					<td><small><strong>IN PROGRESS</strong></small></td>
 				<% };%>
 	 		</tr>
 	 		<% }) %>

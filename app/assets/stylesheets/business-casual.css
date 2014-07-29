@@ -493,5 +493,21 @@ div.user-menu div.user-menu-content:not(.active){
     }
 }
 
+.red-text {
+	color: red;
+}
+
+.green-text {
+	color: green;
+}
+
+.blue-text {
+	color: #4BD9D3;
+}
+
+.pink-text {
+	color: #FA3F73;
+}
+
 
 
