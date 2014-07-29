@@ -10,6 +10,7 @@ module Api
         Job.build_and_translate(@job.id)
         current_user.funds || current_user.funds = 0
         current_user.funds -= @job.price
+        current_user.words_purchased += (@job.source_text.length / 4.5)
         current_user.save!
         render json: @job
       else
