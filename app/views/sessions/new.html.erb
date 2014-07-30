@@ -26,11 +26,11 @@
              <input type="submit" value="Sign Up" class="btn btn-success btn-sm" />
             </form>
 					</div><!-- Close sign up column -->
-						<form action="<%= users_url %>" method="post">
+						<form action="<%= session_url %>" method="post">
 						  <%= auth_token_input %>
-              	<input type="hidden" placeholder="Username" name="user[username]" value="bob"/>
-              	<input type="hidden" placeholder="Password" name="user[password]" value="bbbbbb"/>
-								<input type="hidden" placeholder="Email" name="user[email]" value="sierrabrownsf@gmail.com"/>
+              	<input type="hidden" placeholder="Username" name="user[username]" value="demo"/>
+              	<input type="hidden" placeholder="Password" name="user[password]" value="demodemo"/>
+								<input type="hidden" placeholder="Email" name="user[email]" value="demo@demo.com"/>
 								<div style="text-align:center;">
               		<input type="submit" value="Demo User" class="btn btn-success" style="margin-top:20px; align:center"/>
 								</div>
