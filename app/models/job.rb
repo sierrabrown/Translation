@@ -84,13 +84,14 @@ class Job < ActiveRecord::Base
     
     # Create tasks.
     (0...source_texts.length).each do |task_num|job.save!
-      job.tasks.new({source_text: source_texts[task_num], 
-                    machine_text: machine_texts[task_num], 
-                    source_lang: job.source_lang, 
-                    target_lang: job.target_lang, 
-                    status: 'in progress',
-                    price: (source_texts[task_num].length * 0.001).round(3) * 100
-                  })
+      job.tasks.new({
+        source_text: source_texts[task_num], 
+        machine_text: machine_texts[task_num], 
+        source_lang: job.source_lang, 
+        target_lang: job.target_lang, 
+        status: 'in progress',
+        price: (source_texts[task_num].length * 0.001).round(3) * 100
+      })
     end 
     job.save! 
   end

@@ -8,8 +8,10 @@ module Api
       if @job.email.blank?
         @job.email = current_user.email
       end
+      
       if @job.save
         #@job.delay.print
+        
         Job.build_and_translate(@job.id)
         current_user.funds || current_user.funds = 0
         current_user.funds -= @job.price
