@@ -239,7 +239,7 @@ footer p {
 .onoffswitch-inner:before {
     content: "Translator";
     padding-left: 10px;
-    background-color: ; color: #333333;
+    color: #333333;
 }
 .onoffswitch-inner:after {
     content: "Customer";
