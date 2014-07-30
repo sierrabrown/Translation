@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 require 'yaml'
 YAML::ENGINE.yamler = 'syck'
 
+config.assets.initialize_on_precompile = false
 
 module TR
   class Application < Rails::Application
