@@ -1,6 +1,6 @@
 TR.Routers.Router = Backbone.Router.extend({
   routes: {
-		"": "static_pages#root",
+		"": "home",
 		"jobs/index": "indexJob",
 		"jobs/new": "newJob",
 		"jobs/:id": "showJob",

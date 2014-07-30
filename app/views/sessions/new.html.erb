@@ -6,7 +6,6 @@
           	<p class="form-title">Sign In</p>
 							<div align="center"><img src="https://s3-us-west-1.amazonaws.com/translationdev/icon_31091.png" height="100"></div>
 							<br>
-							<%= render "layouts/errors" %>
               <form class="login" action="<%= session_url%>" method="post">
 								<%= auth_token_input%>
                 <input type="text" placeholder="Username" name="user[username]"/>
@@ -19,7 +18,6 @@
 						<p class="form-title">Sign Up</p>
 						<div align="center"><img src="https://s3-us-west-1.amazonaws.com/translationdev/icon_31091.png" height="100"></div>
 						<br>
-						<%= render "layouts/errors" %>
 						<form class="login" action="<%= users_url %>" method="post">
 						<%= auth_token_input%>
              <input type="text" placeholder="Username" name="user[username]"/>
@@ -37,13 +35,11 @@
               		<input type="submit" value="Demo User" class="btn btn-success" style="margin-top:20px; align:center"/>
 								</div>
              </form>
+						 <%= render "layouts/errors" %>
         </div>
 			</div>
     </div>
 </div>
-
-
-<%= render "layouts/errors" %>
 
 
 
