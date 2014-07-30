@@ -62,7 +62,7 @@ class Job < ActiveRecord::Base
   end
   
   def self.translateMultiple(task_source_texts, source, target)
-    ToLang.start("AIzaSyAjNAf_KjFUabSmyi31BlWDlkq_SaF2qYo")
+    ToLang.start(ENV["google_translate_key"])
     array = []
     
     task_source_texts.each do |text|
