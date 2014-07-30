@@ -5,6 +5,9 @@ module Api
       @job = current_user.jobs.new(job_params)
       #Check to make sure the user has enough money in their account.
       #subtract the price of the job from the users account.
+      if @job.email.blank?
+        @job.email = current_user.email
+      end
       if @job.save
         #@job.delay.print
         Job.build_and_translate(@job.id)

@@ -72,8 +72,12 @@ $(document).ready(function() {
 		                    <li>
 		                        <h4><i class="fa fa-user coral"></i> 
 															<%= jobs.at(i).escape('title') %>
-															<% string =  "/api/jobs/" + jobs.at(i).escape('id') + ".pdf"%>
-															<a href=<%=string%>><small class="coral" ><strong>DOWNLOAD</strong></small></a>
+															<% if (jobs.at(i).escape('status') == 'completed') {%>
+																<% string =  "/api/jobs/" + jobs.at(i).escape('id') + ".pdf"%>
+																<a href=<%=string%>><small class="coral" ><strong>DOWNLOAD</strong></small></a>
+															<% } else {%>
+																<td><small><strong>IN PROGRESS</strong></small></td>
+															<% };%>
 														</h4>
 		                    </li>
 		                    <% } %>
