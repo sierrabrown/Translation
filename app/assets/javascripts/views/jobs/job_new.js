@@ -33,12 +33,17 @@ TR.Views.JobNew = Backbone.View.extend({
 			success: function() {
 				TR.jobs.add(newJob);
 				that.$el.find('#submitModal').modal('show')
+				that.$el.find('#errors').html("<div></div>")
 			}, error: function(model, error) {
-				error = error.responseText
+				error = error.responseJSON
 				// Freezes
-				that.render()
-				that.$el.find('#errors').html("<div class='alert alert-danger' role='alert'>" + error + "</div>")
+				that.$el.find('#errors').html("<div></div>")
+				
+				error.forEach(function(problem) {
+				that.$el.find('#errors').append("<div class='alert alert-danger' role='alert'>" + problem + "</div>")
+			})
 				$('.modal-backdrop').remove();
+				$("body").removeClass('modal-open')
 			}
 		})
 		var form = document.getElementById("translateForm")

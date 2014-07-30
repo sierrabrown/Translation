@@ -18,8 +18,9 @@
 			value="<%= task.escape('machine_text')%>"
 			><%= task.escape('machine_text')%></textarea>
 			<button class="btn btn-default">Submit</button>
-			Earn $ <%= (task.escape('price') / 100.0).toFixed(2) %>
+			<small><strong>Earn $ <%= (task.escape('price') / 100.0).toFixed(2) %></strong></small>
 	  </div>
+		<div id="earnings"><small class="coral" ><strong>$ <%= (counter /100.00).toFixed(2) %> this session</strong></small></div>
 	</form>
 </div>
 

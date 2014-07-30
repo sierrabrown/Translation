@@ -29,7 +29,6 @@ TR.Views.TranslateHome = Backbone.View.extend({
 			}
 		})
 	},
-	
 	edit: function() {
 		var model = TR.tasks.models[0]
 		if (model != undefined) {
