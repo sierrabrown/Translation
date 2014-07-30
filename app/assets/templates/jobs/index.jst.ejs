@@ -14,7 +14,6 @@ $(document).ready(function() {
 });
 
 </script>
-
 <div id="modalSpace"></div>
 <div class="row">
   <div class="box">
@@ -69,7 +68,7 @@ $(document).ready(function() {
 		                </h3>
 		                <ul class="user-menu-list">
 											<% if (jobs.length > 0 ) {%>
-												<% for(var i = jobs.length-1; i > jobs.length-4; i--) { %>
+												<% for(var i = jobs.length-1; i > jobs.length-4 && i >= 0; i--) { %>
 		                    <li>
 		                        <h4><i class="fa fa-user coral"></i> 
 															<%= jobs.at(i).escape('title') %>
@@ -236,7 +235,7 @@ $(document).ready(function() {
 	 			<td><%= job.escape('title')%></td>
 	 			<td><%= (job.escape('price') / 100.0).toFixed(2)%></td>
 				<% if (job.escape('status') == 'completed') {%>
-					<% string =  "/api/jobs/" + jobs.at(i).escape('id') + ".pdf"%>
+					<% string =  "/api/jobs/" + job.escape('id') + ".pdf"%>
 					<td><a href=<%=string%>><small class="coral" ><strong>DOWNLOAD</strong></small></a>
 				<% } else {%>
 					<td><small><strong>IN PROGRESS</strong></small></td>

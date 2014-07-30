@@ -32,8 +32,13 @@ TR.Views.JobNew = Backbone.View.extend({
 		newJob.save({}, {
 			success: function() {
 				TR.jobs.add(newJob);
-				// that.render()
 				that.$el.find('#submitModal').modal('show')
+			}, error: function(model, error) {
+				error = error.responseText
+				// Freezes
+				that.render()
+				that.$el.find('#errors').html("<div class='alert alert-danger' role='alert'>" + error + "</div>")
+				$('.modal-backdrop').remove();
 			}
 		})
 		var form = document.getElementById("translateForm")

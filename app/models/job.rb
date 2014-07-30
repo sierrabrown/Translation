@@ -5,7 +5,8 @@ class Job < ActiveRecord::Base
   has_attached_file :translated_file
   do_not_validate_attachment_file_type :translated_file
   include HTTParty
-  validates :title, :source_lang, :target_lang, presence: true
+  validates :title, :source_lang, :target_lang, :source_text, presence: true
+  validate :source_lang_does_not_equal_target_lang
   
   has_many :tasks
   
@@ -13,6 +14,10 @@ class Job < ActiveRecord::Base
   
   def print
     p "delayed jobs worked"
+  end
+  
+  def source_lang_does_not_equal_target_lang
+    @errors.add(:base, "The source and target languages cannot be the same.") if self.target_lang == self.source_lang
   end
   
   def write_to_file
@@ -57,7 +62,7 @@ class Job < ActiveRecord::Base
   end
   
   def self.translateMultiple(task_source_texts, source, target)
-    ToLang.start(ENV['google_translate_key'])
+    ToLang.start("AIzaSyAjNAf_KjFUabSmyi31BlWDlkq_SaF2qYo")
     array = []
     
     task_source_texts.each do |text|
