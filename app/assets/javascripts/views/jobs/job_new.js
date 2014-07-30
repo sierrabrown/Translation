@@ -1,10 +1,17 @@
 TR.Views.JobNew = Backbone.View.extend({
 	template: JST['jobs/new'],
 	modal: JST['jobs/modal'],
+	modal2: JST['jobs/modal2'],
 	
 	events: {
 		"submit form": "submit",
-		"keyup #textArea": "updateCost"
+		"keyup #textArea": "updateCost",
+		"click #closeButton": "closeModal"
+	},
+	
+	closeModal: function() {
+		this.$el.find('#submitModal').modal('hide')
+		$('.modal-backdrop').remove();
 	},
 	
 	updateCost: function(event) {
@@ -18,16 +25,15 @@ TR.Views.JobNew = Backbone.View.extend({
 		var that = this
 		var params = $(event.currentTarget).serializeJSON();
 		params["job"]["price"] = (params["job"]["source_text"].length * 0.0022).toFixed(2);
-		
 		if (TR.currentUser.get('funds') < params["job"]["price"]) {
-			alert("bro you have no more money")
+			that.$el.find('#bankModal').modal('show')
 		} else {
 		var newJob = new TR.Models.Job(params["job"])
 		newJob.save({}, {
 			success: function() {
 				TR.jobs.add(newJob);
-				alert("Job sent out!");
-				that.render()
+				// that.render()
+				that.$el.find('#submitModal').modal('show')
 			}
 		})
 		var form = document.getElementById("translateForm")
@@ -39,8 +45,9 @@ TR.Views.JobNew = Backbone.View.extend({
 		var content = this.template();
 		this.$el.html(content);
 		var modal = this.modal()
-		debugger
 		this.$el.find('#modalSpace').html(modal);
+		var modal2 = this.modal2()
+		this.$el.find('#modalSpace2').html(modal2);
 		return this;
 	}
 })

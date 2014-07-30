@@ -1,5 +1,6 @@
 TR.Views.JobsIndex = Backbone.View.extend({
 	template: JST['jobs/index'],
+	modal: JST['jobs/modal3'],
 	
 	initialize: function() {
 		this.listenTo(this.collection, 'sync', this.render)
@@ -8,11 +9,19 @@ TR.Views.JobsIndex = Backbone.View.extend({
 	
 	events: {
 		"submit form": "submit",
+		"click #closeButton": "closeModal"
+	},
+	
+	closeModal: function() {
+		this.$el.find('#submitModal').modal('hide')
+		$('.modal-backdrop').remove();
 	},
 	
 	render: function() {
 		var content = this.template( {jobs: this.collection, tasks: this.collection2, currentUser: this.model} );
 		this.$el.html(content);
+		var modal = this.modal()
+		this.$el.find('#modalSpace').html(modal);
 		return this;
 	},
 	
@@ -40,8 +49,8 @@ TR.Views.JobsIndex = Backbone.View.extend({
 	},
 	
 	notifyUser: function() {
-		alert("you bought more credit")
-		this.render()
+		//this.$el.find('#transactionModal').modal('show')
+		// This modal still not working
 	},
 	
 	submit: function(event){
@@ -49,6 +58,7 @@ TR.Views.JobsIndex = Backbone.View.extend({
 		event.stopPropagation();
 		cost = $(event.currentTarget).serializeJSON()
 		TR.currentUser.set({funds: parseInt(TR.currentUser.escape('funds')) + parseInt(cost["amount"]) * 100 })
+		TR.currentUser.save()
 		this.notifyUser()
 		//Disabled Stripe for the purpose of demos.
 				//
