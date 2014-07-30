@@ -36,8 +36,8 @@ module Api
         format.html
         format.pdf do
           pdf = JobPdf.new(@job)
-          send_data pdf.render(@job), 
-          filename: "job#{@job.id}.pdf",
+          send_data pdf.render(@job),
+          filename: "#{@job.title}_#{@job.id}.pdf",
           type: "application/pdf",
           disposition: "inline"
         end
@@ -58,7 +58,7 @@ module Api
 
     def job_params
       params.require(:job).permit(:title, :description, :source_text, :machine_text, :target_text, :customer_id, :source_lang, :target_lang,
-      :status, :price, :translated_file)
+      :status, :price, :translated_file, :email)
     end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140729182205) do
+ActiveRecord::Schema.define(version: 20140730205518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20140729182205) do
     t.string   "translated_file_content_type"
     t.integer  "translated_file_file_size"
     t.datetime "translated_file_updated_at"
+    t.string   "email"
   end
 
   create_table "tasks", force: true do |t|

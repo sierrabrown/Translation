@@ -9,6 +9,6 @@ class UserMailer < ActionMailer::Base
     
     attachments["translation_#{@job.title}"] = {mime_type: 'application/pdf', content: translation_pdf_content}
 
-    mail(to: @user.email, subject: "Your translated text #{@job.title} is attached.")
+    mail(to: @job.email, subject: "Your translated text #{@job.title} is attached.")
   end
 end
