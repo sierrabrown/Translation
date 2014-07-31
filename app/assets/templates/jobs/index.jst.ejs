@@ -237,7 +237,7 @@ $(document).ready(function() {
 				<% var betterDate = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear() %>
 	 			<td><i class="fa fa-clock-o"></i><%= betterDate %></td>
 	 			<td><%= job.escape('title')%></td>
-	 			<td><%= (job.escape('price') / 100.0).toFixed(2)%></td>
+	 			<td><%= job.escape('price') %></td>
 				<% if (job.escape('status') == 'completed') {%>
 					<% string =  "/api/jobs/" + job.escape('id') + ".pdf"%>
 					<td><a href=<%=string%>><small class="coral" ><strong>DOWNLOAD</strong></small></a>
