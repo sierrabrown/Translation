@@ -43,6 +43,7 @@ gem 'paperclip'
 gem "aws-sdk"
 gem 'mail'
 gem 'thin'
+gem 'sendgrid'
 
 group :development do
   gem 'better_errors'
