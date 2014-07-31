@@ -40,7 +40,7 @@ module Api
         if job_completed
           @job.write_to_file
           @job.update_attributes(status: "completed")
-          #UserMailer.completed_job(current_user, @job).deliver
+          UserMailer.completed_job(current_user, @job).deliver
         end
         render json: @task
       else
