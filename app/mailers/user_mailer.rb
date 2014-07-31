@@ -1,7 +1,7 @@
 class UserMailer < ActionMailer::Base
   
   include SendGrid
-  default from: "sierrabrown808@gmail.com"
+  default from: "sierrabrownsf@gmail.com"
   
   def completed_job(user, job)
     @job = job
