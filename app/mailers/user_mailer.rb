@@ -4,8 +4,8 @@ class UserMailer < ActionMailer::Base
   def completed_job(user, job)
     @job = job
     @user = user
-    translation_pdf_view = JobPdf.new(@job)
-    translation_pdf_content = translation_pdf_view.render(@job)
+    #translation_pdf_view = JobPdf.new(@job)
+    #translation_pdf_content = translation_pdf_view.render(@job)
     
     #attachments["translation_#{@job.title}"] = {mime_type: 'application/pdf', content: translation_pdf_content}
 
