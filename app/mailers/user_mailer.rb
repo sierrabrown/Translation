@@ -2,7 +2,6 @@ class UserMailer < ActionMailer::Base
   default from: "sierrabrown808@gmail.com"
   
   def completed_job(user, job)
-    debugger
     @job = job
     @user = user
     translation_pdf_view = JobPdf.new(@job)
