@@ -42,6 +42,7 @@ gem 'figaro'
 gem 'paperclip'
 gem "aws-sdk"
 gem 'mail'
+gem 'thin'
 
 group :development do
   gem 'better_errors'
