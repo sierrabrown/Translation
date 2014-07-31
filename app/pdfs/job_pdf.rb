@@ -9,7 +9,9 @@ class JobPdf < Prawn::Document
   
   def render(job)
     doc = Prawn::Document.new()
-    doc.text job.title, size: 30, style: :bold
+    doc.text "speakeasy  | translation + humanity | contact: sierra brown | sierrabrownsf@gmail.com", align: :center
+    doc.text " "
+    doc.text job.title, size: 25, style: :bold, align: :center
     doc.text " "
     
     doc.text "Translated from #{job.source_lang}:"

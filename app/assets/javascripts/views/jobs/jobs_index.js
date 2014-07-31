@@ -24,32 +24,9 @@ TR.Views.JobsIndex = Backbone.View.extend({
 		this.$el.find('#modalSpace').html(modal);
 		return this;
 	},
-	
-	stripeResponseHandler: function(status, response) {
-	  var $form = $('#payment-form');
-	  if (response.error) {
-	    // Show the errors on the form
-	    $form.find('.payment-errors').text(response.error.message);
-	    $form.find('button').prop('disabled', false);
-	  } else {
-	    // response contains id and card, which contains additional card details
-	    var token = response.id;
-	    // Insert the token into the form so it gets submitted to the server
-	    $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-	    // and submit
-			formData = $form.serializeJSON()
-	    $.ajax({
-	    	data: formData,
-				url: "/api/users/charge",
-				method: "POST",
-				dataType: "JSON",
-				success: this.notifyUser
-	    })
-	  }
-	},
-	
+
 	notifyUser: function() {
-		//this.$el.find('#transactionModal').modal('show')
+		this.$el.find('#transactionModal').modal('show')
 		// This modal still not working
 	},
 	
@@ -59,13 +36,5 @@ TR.Views.JobsIndex = Backbone.View.extend({
 		cost = $(event.currentTarget).serializeJSON()
 		TR.currentUser.set({funds: parseInt(TR.currentUser.escape('funds')) + parseInt(cost["amount"]) * 100 })
 		TR.currentUser.save()
-		this.notifyUser()
-		//Disabled Stripe for the purpose of demos.
-				//
-		// 	  var $form = $(event.currentTarget);
-		// 	     // Disable the submit button to prevent repeated clicks
-		// 	  $form.find('button').prop('disabled', true);
-		// Stripe.setPublishableKey('pk_test_4Twzx8W4JDyBDVQROR7RDHKn')
-		// 	  Stripe.card.createToken($form, this.stripeResponseHandler);
 	},
 })

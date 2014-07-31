@@ -11,7 +11,10 @@ TR.Views.JobNew = Backbone.View.extend({
 	
 	closeModal: function() {
 		this.$el.find('#submitModal').modal('hide')
+		//$('#modalSpace').removeClass('in')
 		$('.modal-backdrop').remove();
+		var modal = this.modal()
+		this.$el.find('#modalSpace').html(modal);
 	},
 	
 	updateCost: function(event) {
