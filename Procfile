@@ -1,1 +1,1 @@
-web: bin/proximo bundle exec rails server
+web: bin/proximo bundle exec thin start
