@@ -40,7 +40,7 @@ module Api
         if job_completed
           @job.write_to_file
           @job.update_attributes(status: "completed")
-          #UserMailer.completed_job(current_user, @job).deliver
+          UserMailer.completed_job(current_user, @job).deliver
         end
         render json: @task
       else
@@ -56,9 +56,3 @@ module Api
     end
   end
 end
-
-# class CatsController
-#   def index
-#     @cats = Cat.all
-#     @cats = @cats.where(coat_color: params[:coat_color]) if params[:coat_color]
-#     @cats = @cats.where(cuddly: params[:cuddly]) if params[:cuddly]
