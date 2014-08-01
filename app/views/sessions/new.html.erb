@@ -5,6 +5,7 @@
           	<p class="form-title">Sign In</p>
 							<div align="center"><img src="https://s3-us-west-1.amazonaws.com/translationdev/icon_31091.png" height="100"></div>
 							<br>
+							 <%= render "layouts/errors" %>
               <form class="login" action="<%= session_url %>" method="post" id="mainForm">
 								<%= auth_token_input%>
                 <input type="text" placeholder="Username" name="user[username]"/>
@@ -12,6 +13,7 @@
                 <input type="password" placeholder="Password" name="user[password]" />
                 <input type="submit" value="Sign In" class="btn btn-success btn-sm" id="submitButton"/>
 								<div style="text-align:center">
+								<p>New users start out with $5 demo credit</p>
 								<a href="" class="register">Sign Up</a>
 								</div>
                </form>
@@ -25,7 +27,6 @@
               		<input type="submit" value="Demo User" class="btn btn-success" style="margin-top:20px; align:center"/>
 								</div>
              </form>
-						 <%= render "layouts/errors" %>
 			</div>
     </div>
 </div>
