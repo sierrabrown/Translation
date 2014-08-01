@@ -51,6 +51,7 @@ TR.Views.JobNew = Backbone.View.extend({
 		})
 		var form = document.getElementById("translateForm")
 		form.reset();
+		$("#cost").html("<h5>Total Cost: $0.00</h5>")
 		}
 	},
 	

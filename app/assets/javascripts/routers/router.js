@@ -23,16 +23,6 @@ TR.Routers.Router = Backbone.Router.extend({
 		this._swapView(view)
 	},
 	
-	profile: function() {
-		TR.jobs.fetch()
-		TR.tasks.fetch()
-		TR.currentUser.fetch()
-		var view = new TR.Views.Profile({
-			jobs: TR.jobs, tasks: TR.tasks, currentUser: TR.currentUser
-		})
-		this._swapView(view)
-	},
-	
 	showUser: function(id) {
 		TR.jobs.fetch();
 		user = TR.users.getOrFetch(id)
@@ -70,17 +60,17 @@ TR.Routers.Router = Backbone.Router.extend({
 	},
 
   _swapView: function (view) {
-    this.currentView && this.currentView.remove();
-    this.currentView = view;
-    $('#main').html(view.render().$el);
-  },
-	
-	charge: function(params) {
-		debugger
-	},
-	
-	contact: function() {
-		debugger
-	}
-	
+		var that = this
+    if (this.currentView) { 
+			this.currentView.$el.fadeOut(500, function() {
+				that.currentView.remove()
+	    	that.currentView = view;
+				$('#main').html(view.render().$el.hide().fadeIn(500))
+	    	//$('#main').html(view.render().$el);
+			})
+		} else {
+    	that.currentView = view;
+    	$('#main').html(view.render().$el);
+		}
+  }
 });
