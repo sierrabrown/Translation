@@ -1,10 +1,14 @@
 TR.Views.TranslateHome = Backbone.View.extend({
 	template: JST['tasks/home'],
+	modal: JST['tasks/modal'],
+	
 	
 	
 	render: function() {
 		var content = this.template();
 		this.$el.html(content);
+		var modal = this.modal()
+		this.$el.find('#modalSpace').html(modal);
 		return this;
 	},
 	
@@ -22,7 +26,7 @@ TR.Views.TranslateHome = Backbone.View.extend({
 			data: {source_lang: params["from"], target_lang: params["to"], status: 'in progress'},
 			success: function() { 
 				if (TR.tasks.length == 0) {
-					alert('You finished all the tasks available for this language pair.')
+					that.$el.find('#submitModal').modal('show')
 				} else {
 					that.edit() 
 				}

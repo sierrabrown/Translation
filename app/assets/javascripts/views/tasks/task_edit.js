@@ -1,6 +1,5 @@
 TR.Views.TaskEdit = Backbone.View.extend({
 	template: JST['tasks/edit'],
-	
 	counter: 0,
 	
 	events: {
@@ -22,7 +21,7 @@ TR.Views.TaskEdit = Backbone.View.extend({
 					data: {source_lang: that.model.source_lang, target_lang: that.model.target_lang, status: 'in progress'},
 					success: function() { 
 						if (TR.tasks.length == 0) {
-							alert('You finished all the tasks available for this language pair.')
+							that.$el.find('#modalSpace').modal('show')
 						} else {
 						that.render()
 						} 
@@ -36,20 +35,10 @@ TR.Views.TaskEdit = Backbone.View.extend({
 		this.earnings = this.earnings + price
 	},
 	
-	skip: function() {
-		if (TR.tasks.models.length == 0) {
-			alert("You are out of tasks")
-		} else {
-			TR.tasks.models = TR.tasks.models.slice(1)
-			this.render()
-		}
-	},
-	
-	
 	render: function() {
 		if (TR.tasks.models.length == 0) {
 			this.$el.html("<div> </div>")
-			alert("you are out of tasks")
+			this.$el.find('#modalSpace').modal('show')
 		} else {
 			this.model = TR.tasks.models[0]
 			var content = this.template( { task: this.model, counter: this.counter} );
