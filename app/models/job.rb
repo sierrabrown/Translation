@@ -23,7 +23,7 @@ class Job < ActiveRecord::Base
   def write_to_file
     target_text = ""
     self.tasks.each do |task|
-      target_text = target_text + task.target_text
+      target_text = target_text + "\r\n" + task.target_text
     end
     self.target_text = target_text
   end
