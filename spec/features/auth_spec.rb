@@ -34,10 +34,10 @@ feature "Sign up" do
     page.should have_content 'Invalid username or password'
   end
 
-  it "logs the user in and redirects them to links index on success" do
+  it "logs the user in and redirects them to speakeasy home on success" do
     sign_up_as_hello_world
     # add user name to application.html.erb layout
-    page.should have_content 'hello_world'
+    page.should have_content 'INSTANT MACHINE TRANSLATION'
   end
 end
 
@@ -65,33 +65,27 @@ feature "Sign in" do
     page.should have_content "Sign In"
   end
 
-  it "takes a username and password" do
-    visit "/session/new"
-    page.should have_content "Username"
-    page.should have_content "Password"
-  end
 
   it "returns to sign in on failure" do
     visit "/session/new"
-    fill_in "Username", with: 'hello_world'
+    fill_in "username", with: 'hello_world'
     fill_in "Password", with: 'hello'
     click_button "Sign In"
 
     # return to sign-in page
     page.should have_content "Sign In"
-    page.should have_content "Username"
   end
 
-  it "takes a user to links index on success" do
+  it "takes a user to speaeasky home on success" do
     sign_up_as_hello_world
     # add button to sign out in application.html.erb layout
     click_button 'Sign Out'
 
     # Sign in as newly created user
     visit "/session/new"
-    fill_in "Username", with: 'hello_world'
-    fill_in "Password", with: 'abcdef'
+    fill_in "username", with: 'hello_world'
+    fill_in "password", with: 'abcdef'
     click_button "Sign In"
-    page.should have_content "hello_world"
+    page.should have_content "INSTANT MACHINE TRANSLATION"
   end
 end

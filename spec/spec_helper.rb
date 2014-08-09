@@ -30,7 +30,7 @@ def sign_up(username)
   fill_in "username", with: username
   fill_in "email", with: 'email@email.com'
   fill_in "password", with: 'abcdef'
-  click_button 'submitButton'
+  find('input[id="submitButton"]').click
 end
 
 def sign_up_as_hello_world

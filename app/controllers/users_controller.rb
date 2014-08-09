@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  
+  
+  before_filter :require_signed_in!, :except => [:new, :create]
+  
   def new
     @user = User.new
   end
@@ -20,13 +24,13 @@ class UsersController < ApplicationController
       render json: @user
     end
   end
-  
-  def show
-    @user = User.find(params[:id])
-    # get rid of password digest
-    render json: @user
-  end
-  
+  #
+  # def show
+  #   @user = User.find(params[:id])
+  #   # get rid of password digest
+  #   render json: @user
+  # end
+  #
   def currentuser
     @user = current_user
     render json: @user

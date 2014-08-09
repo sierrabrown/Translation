@@ -1,6 +1,9 @@
 
 module Api
   class TasksController < ApiController
+    
+    before_filter :require_signed_in!
+    
     def create
       @task = Task.new(task_params)
       @task.price = (@task.source_text.length * 0.001).round(2)

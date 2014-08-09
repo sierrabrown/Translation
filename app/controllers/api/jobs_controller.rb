@@ -1,6 +1,10 @@
 require "prawn"
 module Api
   class JobsController < ApiController
+    
+  
+    before_filter :require_signed_in!
+    
     def create
       @job = current_user.jobs.new(job_params)
       #Check to make sure the user has enough money in their account.
