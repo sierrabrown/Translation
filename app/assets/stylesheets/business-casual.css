@@ -4,6 +4,10 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+#errors {
+	color: red;
+}
+
 body.class1 {
     font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
     background-color: #222328

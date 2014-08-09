@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   # Expose these methods to the views
-  helper_method :current_user, :signed_in?, :authenticate_user!
+  helper_method :current_user, :signed_in?, :authenticate_user!, :require_signed_out!
 
   private
   def current_user
@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
   end
 
   def require_signed_in!
-    redirect_to new_session_url unless signed_in?
+    redirect_to root_url unless signed_in?
+  end
+  
+  def require_signed_out!
+    redirect_to "#/home" if signed_in?
   end
 end
