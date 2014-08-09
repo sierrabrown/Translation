@@ -2,7 +2,6 @@ TR.Views.Profile = Backbone.View.extend({
 	template: JST['profile'],
 	
 	render: function() {
-		debugger
 		var content = this.template({
 			jobs: this.jobs, tasks: this.tasks, currentUser: this.currentUser
 		});

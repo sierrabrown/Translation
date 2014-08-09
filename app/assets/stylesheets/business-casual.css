@@ -60,7 +60,10 @@ hr {
     display: none;
 }
 
-
+.img-responsive {
+  display:block;
+  margin:auto;
+}
 .navbar-brand {
     text-transform: uppercase;
     font-weight: 900;
