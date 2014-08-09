@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   validates :username, :password_digest, :email, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
+  validates :email, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create }
+  validates :username, uniqueness: true
   attr_reader :password
   
   has_many :jobs, foreign_key: :customer_id, class_name: "Job"
