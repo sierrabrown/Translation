@@ -2,19 +2,19 @@
     <div class="row">
 			<div class="box col-xs-4 col-xs-offset-4">
         <div class="wrap">
-          	<p class="form-title">Sign Up</p>
+          	<p class="form-title">Sign In</p>
 							<div align="center"><img src="https://s3-us-west-1.amazonaws.com/translationdev/icon_31091.png" height="100"></div>
 							<br>
+							 <% if flash[:errors]%>
 							 <%= render "layouts/errors" %>
-              <form class="login" action="<%= users_url %>" method="post" id="mainForm">
+							 <%end%>
+              <form class="login" action="<%= session_url %>" method="post" id="mainForm">
 								<%= auth_token_input%>
                 <input type="text" placeholder="Username" name="user[username]" id="username"/>
-								<input type="text" placeholder="Email" name="user[email]" id="email"/>
                 <input type="password" placeholder="Password" name="user[password]" id="password"/>
-                <input type="submit" value="Sign Up" class="btn btn-success btn-sm" id="submitButton"/>
+                <input type="submit" value="Sign In" class="btn btn-success btn-sm" id="submitButton"/>
 								<div style="text-align:center">
-								<p>New users start out with $5 demo credit</p>
-								<a href="" class="register" id="signUpLink">Sign In</a>
+								<a href="/users/new" class="register" id="signUpLink">Sign Up</a>
 								</div>
                </form>
 					</div> <!-- Close sign in column -->
@@ -22,7 +22,6 @@
 						  <%= auth_token_input %>
               	<input type="hidden" placeholder="Username" name="user[username]" value="demo"/>
               	<input type="hidden" placeholder="Password" name="user[password]" value="demodemo"/>
-								<input type="hidden" placeholder="Email" name="user[email]" value="demo@demo.com"/>
 								<div style="text-align:center;">
               		<input type="submit" value="Demo User" class="btn btn-success" style="margin-top:20px; align:center" id="Demo User"/>
 								</div>
@@ -30,78 +29,3 @@
 			</div>
     </div>
 </div>
-
-<script>
-(function( $ ){
-	   
-  // Easing equation based on
-  // EaseInOutExpo by Robert Penner (c) 2001
-  // robertpenner.com/easing_terms_of_use.html
-  
-  $.fn.extend( jQuery.easing, {
-    eioe: function( ø, t, b, c, d ) {
-      if(t==0) return b;
-      if(t==d) return b+c;
-      if( (t /= d/2) < 1 ) return c/2 * Math.pow( 2, 10 * (t - 1) ) + b;
-      return c/2 * ( -Math.pow( 2, -10 * --t ) + 2 ) + b;
-    }
-  });
-  
-  // Toggle disabled
-  // http://stackoverflow.com/questions/4702000/jquery-toggle-input-disabled-attribute#comment5189637_4702086
-  
-  $.fn.toggleDisabled = function() {
-    return this.each(function() {
-      this.disabled = !this.disabled;
-    });
-  };
-  
-  // Toggle attribute value
-  // Anders Grimsrud, 2013
-  
-  $.fn.toggleAttr = function(a, v1, v2) {
-    return this.each(function() {
-      var $t = $(this),
-          v  = $t.attr(a) === v1 ? v2 : v1;
-      $t.attr(a, v)
-        });
-  };
-  
-  // Toggle login/register form
-  
-  $('.register').click(function(){
-    
-    // Toggle register form and enable inputs
-    $('.register-form').slideToggle({
-      easing: 'eioe',
-      duration: 250
-    }).find('input').toggleDisabled();
-    
-    // Change header
-    // Login -> Register
-		$('#submitButton').toggleAttr('value','Sign In','Sign Up');
-    // Change submit button value
-    // Login -> Register
-    $('#mainForm').toggleAttr('action',"<%= users_url%>",'<%=session_url%>');
-    
-    // // Change signup link
-    // // Signup -> Login link
-		var $su = $('.register');
-		    $su.toggleAttr('href','register.htm','login.htm')
-		      var signupLinkText = $su.text() === "Sign In" 
-		          ? "Sign Up" 
-		          : "Sign In";
-		    $su.text(signupLinkText);
-    //
-    // // Hide Forgot password link
-    // $('.forgot-password').toggle();
-    //
-    // // Change form action
-    // // login.php -> register.php
-    //
-      return false;
-  });
-  
-})(jQuery);
-
-</script>
