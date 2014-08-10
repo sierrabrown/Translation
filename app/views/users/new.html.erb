@@ -2,19 +2,19 @@
     <div class="row">
 			<div class="box col-xs-4 col-xs-offset-4">
         <div class="wrap">
-          	<p class="form-title">Sign In</p>
+          	<p class="form-title">Sign Up</p>
 							<div align="center"><img src="https://s3-us-west-1.amazonaws.com/translationdev/icon_31091.png" height="100"></div>
 							<br>
 							 <%= render "layouts/errors" %>
-              <form class="login" action="<%= session_url %>" method="post" id="mainForm">
+              <form class="login" action="<%= users_url %>" method="post" id="mainForm">
 								<%= auth_token_input%>
                 <input type="text" placeholder="Username" name="user[username]" id="username"/>
 								<input type="text" placeholder="Email" name="user[email]" id="email"/>
                 <input type="password" placeholder="Password" name="user[password]" id="password"/>
-                <input type="submit" value="Sign In" class="btn btn-success btn-sm" id="submitButton"/>
+                <input type="submit" value="Sign Up" class="btn btn-success btn-sm" id="submitButton"/>
 								<div style="text-align:center">
 								<p>New users start out with $5 demo credit</p>
-								<a href="" class="register" id="signUpLink">Sign Up</a>
+								<a href="" class="register" id="signUpLink">Sign In</a>
 								</div>
                </form>
 					</div> <!-- Close sign in column -->

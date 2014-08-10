@@ -26,21 +26,25 @@ end
 
 def sign_up(username)
   visit "/session/new"
-  click_link "signUpLink"
-  fill_in "username", with: username
-  fill_in "email", with: 'email@email.com'
-  fill_in "password", with: 'abcdef'
-  find('input[id="submitButton"]').click
+  fill_in "username", with: "demo"
+  fill_in "email", with: 'demo@demo.com'
+  fill_in "password", with: 'demodemo'
+  click_button "Sign Up"
 end
 
 def sign_up_as_hello_world
   sign_up("hello_world")
 end
 
+def demo_sign_in
+  click_button 'Demo User'
+end
+
 def sign_in(username)
   visit "/session/new"
+  click_link 'Sign In'
   fill_in "Username", with: username
   fill_in "Password", with: 'abcdef'
-  click_button 'Sign In'
+  click_button 'submitButton'
 end
 
