@@ -6,7 +6,7 @@ TR.Views.JobNew = Backbone.View.extend({
 	events: {
 		"submit form": "submit",
 		"keyup #textArea": "updateCost",
-		"click #closeButton": "closeModal"
+		//"click #closeButton": "closeModal"
 	},
 	
 	closeModal: function() {
@@ -31,27 +31,24 @@ TR.Views.JobNew = Backbone.View.extend({
 		if (TR.currentUser.get('funds') < params["job"]["price"]) {
 			that.$el.find('#bankModal').modal('show')
 		} else {
-		var newJob = new TR.Models.Job(params["job"])
-		newJob.save({}, {
-			success: function() {
-				TR.jobs.add(newJob);
-				that.$el.find('#submitModal').modal('show')
-				that.$el.find('#errors').html("<div></div>")
-			}, error: function(model, error) {
-				error = error.responseJSON
-				// Freezes
-				that.$el.find('#errors').html("<div></div>")
-				
-				error.forEach(function(problem) {
-				that.$el.find('#errors').append("<div class='alert alert-danger' role='alert'>" + problem + "</div>")
+			var newJob = new TR.Models.Job(params["job"])
+			debugger
+			newJob.save({}, {
+				success: function() {
+					TR.jobs.add(newJob);
+					that.$el.find('#errors').html("<div></div>")
+					that.$el.find('#submitModal').modal('show')
+				}
 			})
-				$('.modal-backdrop').remove();
-				$("body").removeClass('modal-open')
+			that.$el.find('#errors').html("<div></div>")
+			if (newJob.validationError) {
+				newJob.validationError.forEach(function(problem) {
+					that.$el.find('#errors').append("<div class='alert alert-danger' role='alert'>" + problem + "</div>")
+				})
+			} else {
+				that.$el.find('#errors').append("<div class='alert alert-success' role='alert'>Your translation has been submitted succesfully</div>")
 			}
-		})
-		var form = document.getElementById("translateForm")
-		form.reset();
-		$("#cost").html("<h5>Total Cost: $0.00</h5>")
+			$("#cost").html("<h5>Total Cost: $0.00</h5>")
 		}
 	},
 	

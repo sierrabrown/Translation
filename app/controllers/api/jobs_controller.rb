@@ -12,7 +12,6 @@ module Api
       if @job.email.blank?
         @job.email = current_user.email
       end
-      
       if @job.save
         #@job.delay.print
         
