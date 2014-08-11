@@ -35,8 +35,6 @@ TR.Views.JobNew = Backbone.View.extend({
 			newJob.save({}, {
 				success: function() {
 					TR.jobs.add(newJob);
-					that.$el.find('#errors').html("<div></div>")
-					that.$el.find('#submitModal').modal('show')
 				}
 			})
 			that.$el.find('#errors').html("<div></div>")
