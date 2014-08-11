@@ -52,8 +52,8 @@ TR.Views.JobNew = Backbone.View.extend({
 	render: function() {
 		var content = this.template();
 		this.$el.html(content);
-		var modal = this.modal()
-		this.$el.find('#modalSpace').html(modal);
+		// var modal = this.modal()
+		// this.$el.find('#modalSpace').html(modal);
 		var modal2 = this.modal2()
 		this.$el.find('#modalSpace2').html(modal2);
 		return this;
