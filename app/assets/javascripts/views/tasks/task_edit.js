@@ -18,7 +18,7 @@ TR.Views.TaskEdit = Backbone.View.extend({
 		this.model.save({}, {
 			success: function() {
 				TR.tasks.fetch({
-					data: {source_lang: that.model.source_lang, target_lang: that.model.target_lang, status: 'in progress'},
+					data: {source_lang: that.model.escape('source_lang'), target_lang: that.model.escape('target_lang'), status: 'in progress'},
 					success: function() { 
 						if (TR.tasks.length == 0) {
 							that.$el.find('#modalSpace').modal('show')
