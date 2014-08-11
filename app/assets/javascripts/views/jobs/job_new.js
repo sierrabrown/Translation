@@ -1,6 +1,5 @@
 TR.Views.JobNew = Backbone.View.extend({
 	template: JST['jobs/new'],
-	modal: JST['jobs/modal'],
 	modal2: JST['jobs/modal2'],
 	
 	events: {
@@ -44,6 +43,8 @@ TR.Views.JobNew = Backbone.View.extend({
 				})
 			} else {
 				that.$el.find('#errors').append("<div class='alert alert-success' role='alert'>Your translation has been submitted succesfully</div>")
+				var form = that.$el.find("#translateForm")
+				form.reset()
 			}
 			$("#cost").html("<h5>Total Cost: $0.00</h5>")
 		}
@@ -52,8 +53,6 @@ TR.Views.JobNew = Backbone.View.extend({
 	render: function() {
 		var content = this.template();
 		this.$el.html(content);
-		// var modal = this.modal()
-		// this.$el.find('#modalSpace').html(modal);
 		var modal2 = this.modal2()
 		this.$el.find('#modalSpace2').html(modal2);
 		return this;
