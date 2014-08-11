@@ -12,10 +12,10 @@ module Api
 
     def index
       @tasks = Task.all
+      debugger
       if (params['source_lang'] && params['target_lang'])
         @tasks = @tasks.where(source_lang: params['source_lang'], target_lang: params['target_lang'])
-      end
-      if (params['status'])
+      elsif (params['status'])
         @tasks = @tasks.where(status: params['status'])
       end
       render json: @tasks
