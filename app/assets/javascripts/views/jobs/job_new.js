@@ -32,7 +32,6 @@ TR.Views.JobNew = Backbone.View.extend({
 			that.$el.find('#bankModal').modal('show')
 		} else {
 			var newJob = new TR.Models.Job(params["job"])
-			debugger
 			newJob.save({}, {
 				success: function() {
 					TR.jobs.add(newJob);
