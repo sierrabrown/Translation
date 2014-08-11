@@ -43,8 +43,8 @@ TR.Views.JobNew = Backbone.View.extend({
 				})
 			} else {
 				that.$el.find('#errors').append("<div class='alert alert-success' role='alert'>Your translation has been submitted succesfully</div>")
-				var form = that.$el.find("#translateForm")
-				form.reset()
+				var form = document.getElementById("translateForm")
+				form.reset();
 			}
 			$("#cost").html("<h5>Total Cost: $0.00</h5>")
 		}
