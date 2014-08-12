@@ -4,29 +4,29 @@ feature "Sign up" do
     visit "/session/new"
   end
 
-  it "has a user sign up page" do
-    page.should have_content "Sign Up"
+  it "has a user sign in page" do
+    page.should have_content "Sign In"
   end
 
   it "validates the presence of the user's username" do
-    click_button 'Sign Up'
-    page.should have_content 'Sign Up'
-    page.should have_content "Username can't be blank"
+    click_button 'Sign In'
+    page.should have_content 'Sign In'
+    page.should have_content "Invalid username or password"
   end
 
   it "rejects a blank (zero-length) password" do
     fill_in "Username", with: 'hello_world'
-    click_button 'Sign Up'
-    page.should have_content 'Sign Up'
-    page.should have_content 'Password is too short (minimum is 6 characters)'
+    click_button 'Sign In'
+    page.should have_content 'Sign In'
+    page.should have_content 'Invalid username or password'
   end
 
   it "validates that the password is at least 6 characters long" do
     fill_in "Username", with: 'hello_world'
     fill_in "Password", with: 'short'
-    click_button 'Sign Up'
-    page.should have_content 'Sign Up'
-    page.should have_content 'Password is too short (minimum is 6 characters)'
+    click_button 'Sign In'
+    page.should have_content 'Sign In'
+    page.should have_content 'Invalid username or password'
   end
 
   it "logs the user in and redirects them to speakeasy home on success" do

@@ -25,10 +25,10 @@ RSpec.configure do |config|
 end
 
 def sign_up(username)
-  visit "/session/new"
-  fill_in "username", with: "demo"
-  fill_in "email", with: 'demo@demo.com'
-  fill_in "password", with: 'demodemo'
+  visit "/users/new"
+  fill_in "username", with: username
+  fill_in "email", with: "#{username}@gmail.com"
+  fill_in "password", with: 'testtest'
   click_button "Sign Up"
 end
 

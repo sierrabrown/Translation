@@ -57,3 +57,7 @@ group :test do
   gem 'capybara'
   gem 'launchy'
 end
+
+group :development, :test do
+  gem 'jasmine'
+end
